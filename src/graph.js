@@ -1,6 +1,6 @@
 
 var canvas = document.getElementById("myCanvas");
-
+var contactsPos = new Map;
 
 function drawQs(name, x, y) {
     var ctx = canvas.getContext("2d");
@@ -12,44 +12,49 @@ function drawQs(name, x, y) {
     ctx.stroke();
 }
 
-function contactDescribe(from, to, rowHeight) {
+function contactDescribe(from, to,contacts) {
+    let rowHeight = 0
+
+    
+
     var textBox = canvas.getContext("2d");
     textBox.font = "15px Arial";
     if (from === to) {
         if (contactsPos.get('q' + from).y < 200) {
             if (contacts.get(from).a.split(',')[0] === to) {
-                textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 30 - rowHeight * 15);
-                rowHeight--;
+            
+                textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 45 - rowHeight * 15);
+                rowHeight++;
             }
             if (contacts.get(from).b.split(',')[0] === to) {
-                textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 30 - rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 45 - rowHeight * 15);
+                rowHeight++;
             }
             if (contacts.get(from).x.split(',')[0] === to) {
-                textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 30 - rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 45 - rowHeight * 15);
+                rowHeight++;
             }
             if (contacts.get(from).ü.split(',')[0] === to) {
-                textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 30 - rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y - 45 - rowHeight * 15);
+                rowHeight++;
             }
         }
         else {
             if (contacts.get(from).a.split(',')[0] === to) {
-                textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 50 + rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 45 + rowHeight * 15);
+                rowHeight++;
             }
             if (contacts.get(from).b.split(',')[0] === to) {
-                textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 50 + rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 45 + rowHeight * 15);
+                rowHeight++;
             }
             if (contacts.get(from).x.split(',')[0] === to) {
-                textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 50 + rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 45 + rowHeight * 15);
+                rowHeight++;
             }
             if (contacts.get(from).ü.split(',')[0] === to) {
-                textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 50 + rowHeight * 15);
-                rowHeight--;
+                textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], contactsPos.get('q' + from).x, contactsPos.get('q' + from).y + 45 + rowHeight * 15);
+                rowHeight++;
             }
         }
     }
@@ -62,44 +67,75 @@ function contactDescribe(from, to, rowHeight) {
         else if (contactsPos.get('q' + from).y > contactsPos.get('q' + to).y) {
             y -= 30;
            // textBox.rotate(Math.PI * 2 / (6));
-        }
-        if (contactsPos.get('q' + from).x < contactsPos.get('q' + to).x) {
 
-            if (contacts.get(from).a.split(',')[0] === to) {
-                textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], contactsPos.get('q' + from).x + 50, y - rowHeight * 15);
-                rowHeight--;
-            }
-            if (contacts.get(from).b.split(',')[0] === to) {
-                textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], contactsPos.get('q' + from).x + 50, y - rowHeight * 15);
-                rowHeight--;
-            }
-            if (contacts.get(from).x.split(',')[0] === to) {
-                textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], contactsPos.get('q' + from).x + 50, y - rowHeight * 15);
-                rowHeight--;
-            }
-            if (contacts.get(from).ü.split(',')[0] === to) {
-                textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], contactsPos.get('q' + from).x + 50, y - rowHeight * 15);
-                rowHeight--;
-            }
+
         }
-        else {
-            if (contacts.get(from).a.split(',')[0] === to) {
-                textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], contactsPos.get('q' + from).x - 70, y - rowHeight * 15);
-                rowHeight--;
-            }
-            if (contacts.get(from).b.split(',')[0] === to) {
-                textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], contactsPos.get('q' + from).x - 70, y - rowHeight * 15);
-                rowHeight--;
-            }
-            if (contacts.get(from).x.split(',')[0] === to) {
-                textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], contactsPos.get('q' + from).x - 70, y - rowHeight * 15);
-                rowHeight--;
-            }
-            if (contacts.get(from).ü.split(',')[0] === to) {
-                textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], contactsPos.get('q' + from).x - 70, y - rowHeight * 15);
-                rowHeight--;
-            }
+        let yy = Math.abs(contactsPos.get('q' + to).y - contactsPos.get('q' + from).y)/2 
+        let xx = Math.abs(contactsPos.get('q' + to).x - contactsPos.get('q' + from).x)/2 
+
+        if(contactsPos.get('q' + to).y < contactsPos.get('q' + from).y)
+        {
+                yy = contactsPos.get('q' + to).y + yy
         }
+        else{
+
+            yy = contactsPos.get('q' + from).y + yy
+        }
+        if(contactsPos.get('q' + to).x < contactsPos.get('q' + from).x)
+        {
+                xx = contactsPos.get('q' + to).x + xx
+        }
+        else{
+
+            xx = contactsPos.get('q' + from).x + xx
+        }
+
+        //if (contactsPos.get('q' + from).x < contactsPos.get('q' + to).x) {
+           
+        if(to=='i'){
+            to ='igen'
+        }
+        if(to=='n'){
+            to ='nem'
+        }
+        if (contacts.get(from).a.split(',')[0] === to) {
+            if(to=="igen" ||to=="nem" ){
+                textBox.fillText('a / a, stop', xx,yy - rowHeight * 15);
+                rowHeight++;
+            }
+            else{
+            textBox.fillText('a / ' + contacts.get(from).a.split(',')[1] + ', ' + contacts.get(from).a.split(',')[2], xx,yy - rowHeight * 15);
+            rowHeight++;}
+        }
+        if (contacts.get(from).b.split(',')[0] === to) {
+            if(to=="igen" ||to=="nem" ){
+                textBox.fillText('b / b, stop', xx,yy - rowHeight * 15);
+                rowHeight++;
+            }
+            else{
+            textBox.fillText('b / ' + contacts.get(from).b.split(',')[1] + ', ' + contacts.get(from).b.split(',')[2], xx,yy - rowHeight * 15);
+            rowHeight++;}
+        }
+        if (contacts.get(from).x.split(',')[0] === to) {
+            if(to=="igen" ||to=="nem" ){
+                textBox.fillText('x / x, stop', xx,yy - rowHeight * 15);
+                rowHeight++;
+            }
+            else{
+            textBox.fillText('x / ' + contacts.get(from).x.split(',')[1] + ', ' + contacts.get(from).x.split(',')[2], xx,yy - rowHeight * 15);
+            rowHeight++;}
+        }
+        if (contacts.get(from).ü.split(',')[0] === to) {
+            if(to=="igen" ||to=="nem" ){
+                textBox.fillText('ü / ü, stop',xx,yy - rowHeight * 15);
+                rowHeight++;
+            }
+            else{
+            textBox.fillText('ü / ' + contacts.get(from).ü.split(',')[1] + ', ' + contacts.get(from).ü.split(',')[2], xx,yy - rowHeight * 15);
+            rowHeight++;}
+        }
+    
+    
     }
 }
 
@@ -108,6 +144,7 @@ function contactTo(from, to) {
     ctx.beginPath();
     if (from == 'q0') {
         if (to == 'q0') {
+            
             ctx.moveTo(contactsPos.get('q0').x, contactsPos.get('q0').y - 22);
             ctx.lineTo(contactsPos.get('q0').x - 10, contactsPos.get('q0').y - 40);
             ctx.lineTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 40);
@@ -117,6 +154,7 @@ function contactTo(from, to) {
             ctx.lineTo(contactsPos.get('q0').x + 20, contactsPos.get('q0').y - 22);
         }
         if (to == 'q1') {
+            
             ctx.moveTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 5);
             ctx.lineTo(contactsPos.get('q1').x - 10, contactsPos.get('q1').y - 5);
             ctx.lineTo(contactsPos.get('q1').x - 20, contactsPos.get('q1').y - 15);
@@ -296,156 +334,64 @@ function contactTo(from, to) {
 }
 
 
-var contactsPos = new Map;
-contactsPos.set('q0', { x: 100, y: 125 })
-contactsPos.set('q1', { x: 340, y: 125 })
-contactsPos.set('q2', { x: 100, y: 375 })
-contactsPos.set('q3', { x: 340, y: 375 })
-contactsPos.set('qi', { x: 50, y: 250 })
-contactsPos.set('qn', { x: 390, y: 250 })
+function MainDraw(qAmount) {
+var contacts = new Map(finalMapGetter())
+
+
+
+
+for(var t=1;t<qAmount;t++){
+    if(t % 2){
+    contactsPos.set('q'+t, { x: 500, y: 80*t })
+    drawQs('q'+t, contactsPos.get('q'+t).x, contactsPos.get('q'+t).y);}
+    else{
+        contactsPos.set('q'+t, { x: 20, y: 80*t })
+        drawQs('q'+t, contactsPos.get('q'+t).x, contactsPos.get('q'+t).y);}
+    }
+
+
+contactsPos.set('q0', { x: 200, y: 50 })
+contactsPos.set('qi', { x: 400, y: 300 })
+contactsPos.set('qn', { x: 300, y: 500 })
+
 drawQs('q0', contactsPos.get('q0').x, contactsPos.get('q0').y);
-drawQs('q1', contactsPos.get('q1').x, contactsPos.get('q1').y);
-drawQs('q2', contactsPos.get('q2').x, contactsPos.get('q2').y);
-drawQs('q3', contactsPos.get('q3').x, contactsPos.get('q3').y);
 drawQs('qi', contactsPos.get('qi').x, contactsPos.get('qi').y);
 drawQs('qn', contactsPos.get('qn').x, contactsPos.get('qn').y);
-var contacts = finalMapGetter()
 
-contacts.set('0', { a: "1,x,->", b: "nem", x: "igen", ü: "nem" })
-contacts.set('1', { a: "1,a,->", b: "1,b,->", x: "2,x,<-", ü: "2,ü,<-" })
-contacts.set('2', { a: "nem", b: "3,x,<-", x: "nem", ü: "nem" })
-contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
 
-console.log(finalMapGetter());
 
 for (let i = 0; i < 4; i++) {
-    let checkRowHeight = 0;
-    if (contacts.get('' + i).a !== "igen" && contacts.get('' + i).a !== "nem" && contacts.get('' + i).a.split(',')[0] !== ('' + i)) {
-        checkRowHeight++;
-    }
-    if (contacts.get('' + i).b !== "igen" && contacts.get('' + i).b !== "nem" && contacts.get('' + i).b.split(',')[0] !== ('' + i)) {
-        checkRowHeight++;
-    }
-    if (contacts.get('' + i).x !== "igen" && contacts.get('' + i).x !== "nem" && contacts.get('' + i).x.split(',')[0] !== ('' + i)) {
-        checkRowHeight++;
-    }
-    if (contacts.get('' + i).ü !== "igen" && contacts.get('' + i).ü !== "nem" && contacts.get('' + i).ü.split(',')[0] !== ('' + i)) {
-        checkRowHeight++;
-    }
-    console.log(checkRowHeight);
-    switch (i) {
-        case 0:
-            if (contacts.get('' + i).a.split(',')[0] === '0' || contacts.get('' + i).b.split(',')[0] === '0' || contacts.get('' + i).x.split(',')[0] === '0' || contacts.get('' + i).ü.split(',')[0] === '0') {
-                contactTo('q0', 'q0');
-                contactDescribe('0', '0', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '1' || contacts.get('' + i).b.split(',')[0] === '1' || contacts.get('' + i).x.split(',')[0] === '1' || contacts.get('' + i).ü.split(',')[0] === '1') {
-                contactTo('q0', 'q1');
-                contactDescribe('0', '1', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '2' || contacts.get('' + i).b.split(',')[0] === '2' || contacts.get('' + i).x.split(',')[0] === '2' || contacts.get('' + i).ü.split(',')[0] === '2') {
-                contactTo('q0', 'q2');
-                contactDescribe('0', '2', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '3' || contacts.get('' + i).b.split(',')[0] === '3' || contacts.get('' + i).x.split(',')[0] === '3' || contacts.get('' + i).ü.split(',')[0] === '3') {
-                contactTo('q0', 'q3');
-                contactDescribe('0', '3', checkRowHeight);
-            }
+    
+    
+    for(var k=0;k<contacts.size+2;k++){
+        if(k == contacts.size){
             if (contacts.get('' + i).a === 'igen' || contacts.get('' + i).b === 'igen' || contacts.get('' + i).x === 'igen' || contacts.get('' + i).ü === 'igen') {
-                contactTo('q0', 'qi');
-                contactDescribe('0', 'i', checkRowHeight);
+                contactTo('q'+i, 'qi');
+                contactDescribe(""+i, 'i',contacts);
             }
+        }
+        if(k == contacts.size+1){
             if (contacts.get('' + i).a === 'nem' || contacts.get('' + i).b === 'nem' || contacts.get('' + i).x === 'nem' || contacts.get('' + i).ü === 'nem') {
-                contactTo('q0', 'qn');
-                contactDescribe('0', 'n', checkRowHeight);
+                contactTo('q'+i, 'qn');
+                contactDescribe(""+i, 'n',contacts);
             }
-            break;
-        case 1:
-            if (contacts.get('' + i).a.split(',')[0] === '0' || contacts.get('' + i).b.split(',')[0] === '0' || contacts.get('' + i).x.split(',')[0] === '0' || contacts.get('' + i).ü.split(',')[0] === '0') {
-                contactTo('q1', 'q0', checkRowHeight);
-                contactDescribe('1', '0', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '1' || contacts.get('' + i).b.split(',')[0] === '1' || contacts.get('' + i).x.split(',')[0] === '1' || contacts.get('' + i).ü.split(',')[0] === '1') {
-                contactTo('q1', 'q1', checkRowHeight);
-                contactDescribe('1', '1', checkRowHeight);
+        }
 
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '2' || contacts.get('' + i).b.split(',')[0] === '2' || contacts.get('' + i).x.split(',')[0] === '2' || contacts.get('' + i).ü.split(',')[0] === '2') {
-                contactTo('q1', 'q2', checkRowHeight);
-                contactDescribe('1', '2', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '3' || contacts.get('' + i).b.split(',')[0] === '3' || contacts.get('' + i).x.split(',')[0] === '3' || contacts.get('' + i).ü.split(',')[0] === '3') {
-                contactTo('q1', 'q3', checkRowHeight);
-                contactDescribe('1', '3', checkRowHeight);
-            }
-            if (contacts.get('' + i).a === 'igen' || contacts.get('' + i).b === 'igen' || contacts.get('' + i).x === 'igen' || contacts.get('' + i).ü === 'igen') {
-                contactTo('q1', 'qi');
-                contactDescribe('1', 'i', checkRowHeight);
-            }
-            if (contacts.get('' + i).a === 'nem' || contacts.get('' + i).b === 'nem' || contacts.get('' + i).x === 'nem' || contacts.get('' + i).ü === 'nem') {
-                contactTo('q1', 'qn');
-                contactDescribe('1', 'n', checkRowHeight);
-            }
-            break;
-        case 2:
-            if (contacts.get('' + i).a.split(',')[0] === '0' || contacts.get('' + i).b.split(',')[0] === '0' || contacts.get('' + i).x.split(',')[0] === '0' || contacts.get('' + i).ü.split(',')[0] === '0') {
-                contactTo('q2', 'q0', checkRowHeight);
-                contactDescribe('2', '0', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '1' || contacts.get('' + i).b.split(',')[0] === '1' || contacts.get('' + i).x.split(',')[0] === '1' || contacts.get('' + i).ü.split(',')[0] === '1') {
-                contactTo('q2', 'q1', checkRowHeight);
-                contactDescribe('2', '1', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '2' || contacts.get('' + i).b.split(',')[0] === '2' || contacts.get('' + i).x.split(',')[0] === '2' || contacts.get('' + i).ü.split(',')[0] === '2') {
-                contactTo('q2', 'q2', checkRowHeight);
-                contactDescribe('2', '2', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '3' || contacts.get('' + i).b.split(',')[0] === '3' || contacts.get('' + i).x.split(',')[0] === '3' || contacts.get('' + i).ü.split(',')[0] === '3') {
-                contactTo('q2', 'q3', checkRowHeight);
-                contactDescribe('2', '3', checkRowHeight);
-            }
-            if (contacts.get('' + i).a === 'igen' || contacts.get('' + i).b === 'igen' || contacts.get('' + i).x === 'igen' || contacts.get('' + i).ü === 'igen') {
-                contactTo('q2', 'qi');
-                contactDescribe('2', 'i', checkRowHeight);
-            }
-            if (contacts.get('' + i).a === 'nem' || contacts.get('' + i).b === 'nem' || contacts.get('' + i).x === 'nem' || contacts.get('' + i).ü === 'nem') {
-                contactTo('q2', 'qn');
-                contactDescribe('2', 'n', checkRowHeight);
-            }
-            break;
-        case 3:
-            if (contacts.get('' + i).a.split(',')[0] === '0' || contacts.get('' + i).b.split(',')[0] === '0' || contacts.get('' + i).x.split(',')[0] === '0' || contacts.get('' + i).ü.split(',')[0] === '0') {
-                contactTo('q3', 'q0', checkRowHeight);
-                contactDescribe('3', '0', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '1' || contacts.get('' + i).b.split(',')[0] === '1' || contacts.get('' + i).x.split(',')[0] === '1' || contacts.get('' + i).ü.split(',')[0] === '1') {
-                contactTo('q3', 'q1', checkRowHeight);
-                contactDescribe('3', '1', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '2' || contacts.get('' + i).b.split(',')[0] === '2' || contacts.get('' + i).x.split(',')[0] === '2' || contacts.get('' + i).ü.split(',')[0] === '2') {
-                contactTo('q3', 'q2', checkRowHeight);
-                contactDescribe('3', '2', checkRowHeight);
-            }
-            if (contacts.get('' + i).a.split(',')[0] === '3' || contacts.get('' + i).b.split(',')[0] === '3' || contacts.get('' + i).x.split(',')[0] === '3' || contacts.get('' + i).ü.split(',')[0] === '3') {
-                contactTo('q3', 'q3', checkRowHeight);
-                contactDescribe('3', '3', checkRowHeight);
-            }
-            if (contacts.get('' + i).a === 'igen' || contacts.get('' + i).b === 'igen' || contacts.get('' + i).x === 'igen' || contacts.get('' + i).ü === 'igen') {
-                contactTo('q3', 'qi');
-                contactDescribe('3', 'i', checkRowHeight);
-            }
-            if (contacts.get('' + i).a === 'nem' || contacts.get('' + i).b === 'nem' || contacts.get('' + i).x === 'nem' || contacts.get('' + i).ü === 'nem') {
-                contactTo('q3', 'qn');
-                contactDescribe('3', 'n', checkRowHeight);
-            }
-            break;
+
+        if (contacts.get('' + i).a.split(',')[0] === ""+k || contacts.get('' + i).b.split(',')[0] === ""+k || contacts.get('' + i).x.split(',')[0] === ""+k || contacts.get('' + i).ü.split(',')[0] === ""+k) {
+            contactTo('q'+i, 'q'+k);
+            contactDescribe(""+i, ""+k,contacts);
+        }
     }
+
+
 }
-
+}
+/*
 function hidediv(){
  
     document.getElementById("graph").style.display = 'block';
-    mainDraw()
+   
   }
   function init() {
       
@@ -454,4 +400,4 @@ function hidediv(){
     
   }
   
-  window.addEventListener('load', init, false);
+  window.addEventListener('load', init, false);*/

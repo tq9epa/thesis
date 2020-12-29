@@ -67,13 +67,15 @@ tr td:nth-child(1):hover:after {
     <ol class="turing"></ol>
     <h3>Vezérlés</h3>
 			<p>
-				<input id="run" type="button" value="Indítás" />
+        Input szalag megadása: <input type="text" size="10" value="aaaabbbb" required>
+				<input id="run1" type="button" value="Indítás" />
 				<input id="step" type="button" value="Következő" />
-				<input id="reset" type="button" value="Visszaállítás" />
+        <input id="reset" type="button" value="Visszaállítás" />
+        
 			</p>
     </div>
 
-      <div class="well">
+      <div class="well" style="display: none">
       <h2>Szalag importálása</h2>
     <form id="formAjax" method="POST">
         <input type="file" id="fileAjax" name="fileAjax" value="Tallózás"/><br /><br />
@@ -83,26 +85,38 @@ tr td:nth-child(1):hover:after {
     <p id="status2"></p>
   
     </div>
-
+  
     
 
     
     <div class="well">
     <h2>Az automata konfigurálása</h2>
-    
+    <label for="files"> Választhatsz az elmentett gépek közül:</label>
 
+    <select id="files">
+      <option value="1">abce.txt</option>
+      <option value="2">1001.txt</option>
+      <option value="2">ababab.txt</option>
+      <option value="3">aabbaabb.txt</option>
+    </select> <br>
+
+        <p>Csinálhatsz saját gépet is:</p>
         
         <button id="c" data-tableID="first">Új oszlop hozzáadása</button>
-        Ábécé egy betüje: <input type="text" id="addcolumn" size="5" name="asd" required><br>
+        Ábécé egy betüje: <input type="text" id="addcolumn" size="5" name="asd" required> <br>
+
       <button id="r" data-tableID="first">Új sor hozzáadása</button>
 
       <form id="formAjaxTable" >
+   
+        
+        
     <table data-canexpand="true" data-hasrownumbers="true" id="first" class="table table-striped">
-      <tr><th>δ</th><th>a</th><th>b</th><th>x</th><th>ü</th></tr>
-      <tr><td></td><td>1,x,></td><td>nem</td><td>igen</td><td>nem</td></tr>
-      <tr><td></td><td>1,a,></td><td>1,b,-></td><td>2,x,<</td><td>2,ü,<</td></tr>
-      <tr><td></td><td>nem</td><td>3,x,<</td><td>nem</td><td>nem</td></tr>
-      <tr><td></td><td>3,a,<</td><td>3,b,<</td><td>0,x,></td><td>nem</td></tr>
+      <tr><th>δ</th><th><input type="text" size="3" value="a" required></th><th><input type="text" size="3" value="b" required></th><th><input type="text" size="3" value="x" required></th><th><input type="text" size="3" value="ü" required></th></tr>
+      <tr><td></td><td><input type="text" size="3" value="1,x,->" required></td><td><input type="text" size="3" value="nem" required></td><td><input type="text" size="3" value="igen" required></td><td><input type="text" size="3" value="nem" required></td></tr>
+      <tr><td></td><td><input type="text" size="3" value="1,a,->" required></td><td><input type="text" size="3" value="1,b,->" required></td><td><input type="text" size="3" value="2,x,<-" required></td><td><input type="text" size="3" value="2,ü,<-" required></td></tr>
+      <tr><td></td><td><input type="text" size="3" value="nem" required></td><td><input type="text" size="3" value="3,x,<-" required></td><td><input type="text" size="3" value="nem" required></td><td><input type="text" size="3" value="nem" required></td></tr>
+      <tr><td></td><td><input type="text" size="3" value="3,a,<-" required></td><td><input type="text" size="3" value="3,b,<-" required></td><td><input type="text" size="3" value="0,x,->" required></td><td><input type="text" size="3" value="nem" required></td></tr>
     </table>
 
     <!--
@@ -111,7 +125,8 @@ contacts.set('1', { a: "1,a,->", b: "1,b,->", x: "2,x,<-", ü: "2,ü,<-" })
 contacts.set('2', { a: "nem", b: "3,x,<-", x: "nem", ü: "nem" })
 contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
 -->
-      <input type="submit" id="submitTable" name="submit" value="Küldés" />
+      <input type="submit" id="submitTable" name="submit" value="Automata betöltés" />
+      <input type="button" id="save"  value="Mentés fájlba" />
       </form>
 
       <p id="status"></p>

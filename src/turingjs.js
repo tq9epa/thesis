@@ -112,7 +112,7 @@ $(function () {
    //s27
     steps['s27:*']  = {state: 's10', value: '*', move: 'right'};
 var turing = new Turing(steps, 's1', 's9');
-			turing.tape = ['a', 'b', 'b', 'a'];
+			turing.tape = ['a', 'a', 'b', 'b'];
 			turing.calc = '3! =';
 			turing.reset();
 

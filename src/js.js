@@ -54,8 +54,40 @@ myForm.onsubmit = function(event) {
 
   $('button#c').on('click', addColumn);              // add column handler
   $('button#r').on('click', addRow);                 // add row handler
-  $('table[data-canexpand]')
-    .on('click', 'th:nth-child(n+2)', removeColumn); // remove column handler
+  $('table[data-canexpand]').on('click', 'th:nth-child(n+2)', removeColumn);
+  // remove a column
+  function removeColumn(e){
+    var currentCell = $(this)
+    console.log(currentCell)
+     currentCell = colIndex = +(currentCell.attr('data-colindex').split('#')[1])
+     currentCell = forTable = $(this).parents('table').first()
+     currentCell = rows = forTable.find('tr');
+
+    // using rownumbers, this won't be hit
+    if (rows.last().find('td').length < 2) {
+        return alert('last column in table can\'t be removed');
+    }
+    console.log(colIndex);
+    rows.each( function(i, row) {
+                row.removeChild(row.childNodes[colIndex]);
+               } );
+    reNumber(forTable);
+}
+   /*$('table[data-canexpand]').on('mousedown',function(event)
+	{
+		if (event.which == 3)
+		{
+      console.log("jobb klikk")
+			removeColumn('th:nth-child(n+2)')
+		}
+	});*/
+  
+  
+  /*$(document).on('contextmenu', function(event)
+	{
+		 event.preventDefault();
+	});*/
+	 // remove column handler 'th:nth-child(n+2)'
   $('table[data-canexpand]')
     .on('click', 'tr td:nth-child(1)', removeRow);   // remove row handler
   
@@ -82,13 +114,14 @@ myForm.onsubmit = function(event) {
       
       // renumber: local numberRow method
       function numberRow(rw, rnr) {
+       
         $(rw).find('td').each(
                 function (j, cell) {
                    void( j>0 && $(cell).attr('data-cellindex','r' + (rnr) + 'c' + j)
                              || ($(cell).attr('data-rowindex','row#' + (rnr)),
-                                $(cell).html(rnr)) );
+                                $(cell).html(rnr-1)) );
                 } );
-                
+                  
       }
       
       // renumber: local numberColumnHeader method
@@ -139,7 +172,7 @@ myForm.onsubmit = function(event) {
       var forTable = $('#'+$(this).attr('data-tableID'))
          ,nCells = forTable.find('tr').last().find('td').length
          ,row = $('<tr>')
-         ,cell = $('<td>'+'<input type="text" id="new" size="5" maxlength="10" required>').addClass('new');
+         ,cell = $('<td>'+'<input type="text" id="new" size="3" maxlength="10" required>').addClass('new');
       ;
       while (nCells) {
           row.append(cell.clone());
@@ -164,9 +197,10 @@ myForm.onsubmit = function(event) {
   // remove a column
   function removeColumn(e){
       var currentCell = $(this)
-         ,colIndex = +(currentCell.attr('data-colindex').split('#')[1])
-         ,forTable = $(this).parents('table').first()
-         ,rows = forTable.find('tr');
+      console.log(currentCell)
+       currentCell = colIndex = +(currentCell.attr('data-colindex').split('#')[1])
+       currentCell = forTable = $(this).parents('table').first()
+       currentCell = rows = forTable.find('tr');
 
       // using rownumbers, this won't be hit
       if (rows.last().find('td').length < 2) {
@@ -198,52 +232,50 @@ myForm.onsubmit = function(event) {
      
     var table = document.getElementById('first');
     let v=0;
-    for (var r = 0, n = table.rows.length; r < n; r++) {
-        for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
-         
-          if(r==0 && c!=0)
-          maps.set(v++,table.rows[r].cells[c].innerText)
-          else
-           maps.set(v++,table.rows[r].cells[c].innerText)
-          
-        }
-    }
+    var lenght = table.rows.length;
     
-    let the = Math.sqrt(maps.size) //4
+    let the= 0
     
-    console.log(maps)
-    //maps.delete(getByValue(maps,'δ'))
-    
-    maps.forEach(function(value,key) {
-      v = parseInt(value.slice(-1),10)
-      
-      if(Number.isInteger(v)||value=='δ')
-      maps.delete(key)
-    });
-    
-    console.log(maps)
+    let vz= {}
 
     let headerMap = new Map()
+    for (i = 0; i < lenght; i++){
+        var inputs = table.rows.item(i).getElementsByTagName("input");
+        var inputslengte = inputs.length;
+
+        for(var j = 0; j < inputslengte; j++){
+            var inputval = inputs[j].value;                
+            maps.set(v++,inputval)
+        }            
+    }
+    
+    
+    maps.forEach(function(value,key) {
+      if(value.length==1)
+      the++
+    });
+
+    
     const mapsIter = maps.values()
     const headerMapIter = headerMap.values()
-    for(var t=0;t<the-1;t++){
+    for(var t=0;t<the;t++){
       headerMap.set(t,Array.from(maps)[0][1])
      
       maps.delete(Array.from(maps)[0][0])
-    }let vz= {}
-    for(var k = 0;k<the-1;k++){ //létrehozom a végső tömböt de ebből még törölni kell
+    }
+    
+    for(var k = 0;k<maps.size / headerMap.size;k++){ //létrehozom a végső tömböt de ebből még törölni kell
       const headerMapIter = headerMap.values()
         for(var z=0;z<headerMap.size;z++){
           vz = Object.assign(vz,{[headerMapIter.next().value]:mapsIter.next().value})
-      finalMap.set(k,vz)
+      finalMap.set(k.toString(),vz)
     }
     vz={}
   }
   
-console.log(headerMap)
-console.log(finalMap)
 
 hidediv();
+MainDraw(the)
 }
 }
 
