@@ -337,9 +337,6 @@ function contactTo(from, to) {
 function MainDraw(qAmount) {
 var contacts = new Map(finalMapGetter())
 
-
-
-
 for(var t=1;t<qAmount;t++){
     if(t % 2){
     contactsPos.set('q'+t, { x: 500, y: 80*t })
@@ -387,17 +384,3 @@ for (let i = 0; i < 4; i++) {
 
 }
 }
-/*
-function hidediv(){
- 
-    document.getElementById("graph").style.display = 'block';
-   
-  }
-  function init() {
-      
-    document.getElementById("submitTable").addEventListener('click', hidediv, true);
-    
-    
-  }
-  
-  window.addEventListener('load', init, false);*/

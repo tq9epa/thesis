@@ -1,16 +1,9 @@
-var myForm = document.getElementById('formAjax');  // Our HTML form's ID
-var myFile = document.getElementById('fileAjax');  // Our HTML files' ID
+var myForm = document.getElementById('formAjax');
+var myFile = document.getElementById('fileAjax');  
 var statusP = document.getElementById('status');
-var statusP2 = document.getElementById('status2');
+
 
 let finalMap = new Map()
-
-/*let contacts = new Map();
-    contacts.set('0', {a: "1,x,->", b: "nem",x: "igen",ü:"nem"})
-    contacts.set('1', {a: "1,a,->", b: "1,b,->",x: "2,x,<-",ü:"2,ü,<-"})
-    contacts.set('2', {a: "nem", b: "3,x,<-",x: "nem",ü:"nem"})
-    contacts.set('3', {a: "3,a,<-", b: "3,b,<-",x: "0,x,>",ü:"nem"})
-*/
 
 
 myForm.onsubmit = function(event) {
@@ -188,7 +181,7 @@ myForm.onsubmit = function(event) {
          ,row = currentCell.parents('tr').first()
          ,forTable = currentCell.parents('table').first();
       if (forTable.find('tr').length < 3) {
-        return alert('last row in table can\'t be removed');
+        return alert('utlosó sort nem lehet törölni');
       }
       row.remove();
       reNumber(forTable);
@@ -204,7 +197,7 @@ myForm.onsubmit = function(event) {
 
       // using rownumbers, this won't be hit
       if (rows.last().find('td').length < 2) {
-          return alert('last column in table can\'t be removed');
+          return alert('utlosó oszlopot nem lehet törölni');
       }
       console.log(colIndex);
       rows.each( function(i, row) {
@@ -264,7 +257,7 @@ myForm.onsubmit = function(event) {
       maps.delete(Array.from(maps)[0][0])
     }
     
-    for(var k = 0;k<maps.size / headerMap.size;k++){ //létrehozom a végső tömböt de ebből még törölni kell
+    for(var k = 0;k<maps.size / headerMap.size;k++){ 
       const headerMapIter = headerMap.values()
         for(var z=0;z<headerMap.size;z++){
           vz = Object.assign(vz,{[headerMapIter.next().value]:mapsIter.next().value})

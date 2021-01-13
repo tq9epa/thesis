@@ -7,49 +7,9 @@
     <!-- Bootstrap -->
  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg==" crossorigin="anonymous">
  <link rel="stylesheet" href="src/style.css" />
-<style>
-table{
-    width:100%;
-}
-table td{
-    white-space: nowrap;  /** added **/
-}
-table td:last-child{
-    width:100%;
-}
-th:hover:after, td:hover:after {
-    position: absolute;
-    margin-top: 0.8em;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 4px;
-    text-align: left;
-    white-space: pre;
-    font-weight: normal;
-    color: #777;
-    border-radius: 4px;
-    box-shadow: 2px 1px 12px #ccc;
-}
-th:hover:after {
-    content: 'click to remove\A'attr(data-colindex);
-}
-
-tr th:nth-child(1):hover:after {
-    content: 'row number';
-}
-
-td:hover:after {
-    content: 'index: ' attr(data-cellindex);
-}
-
-tr td:nth-child(1):hover:after {
-    content: 'click to remove this row';
-}
-
-</style>
-
+ 
 </head>
-  <body>
+  <body >
     <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
@@ -57,22 +17,52 @@ tr td:nth-child(1):hover:after {
           </div>
         </div>
       </nav>
-
+      <ol class="turing"></ol>
     <div class="container">
 
-    
+  
       
     <div class="well">
     <h2>Szalag futtatása</h2>
-    <ol class="turing"></ol>
-    <h3>Vezérlés</h3>
-			<p>
-        Input szalag megadása: <input type="text" size="10" value="aabb" required>
-				<input id="run1" type="button" value="Indítás" />
-				<input id="step" type="button" value="Következő" />
-        <input id="reset" type="button" value="Visszaállítás" />
-        
-			</p>
+  
+   
+  
+    <div class="container2">
+      <div class="actions">
+        <h2>Vezérlők</h2>
+        <p>
+          <input id="run" type="button" value="Indítás" />
+          <input id="step" type="button" value="Következő" />
+          <input id="reset" type="button" value="Reset" />
+        </p>
+      </div>
+      <div class="count">
+        <h2>Lépés</h2>
+        <p id="count"></p>
+      </div>
+      <div class="state">
+        <h2>Állapot</h2>
+        <p id="state"></p>
+      </div>
+      <div class="calc">
+        <h2>Eredmény</h2>
+        <h10>(kattints ide)</h10>
+        <p id="calc"></p>
+      </div>
+      
+
+      <div id="canvas"></div>
+    </div>
+    <label for="machines"> Választás az elmentett gépek közül:</label>
+    
+    <form id="options" method="post"></form>
+    <select id="machines" onchange="change()">
+      <option value="1">egyes</option>
+      <option value="2">kettes</option>
+      <option value="3">hármas</option>
+    </select> 
+    </form><br>
+    <button onClick="window.location.reload();">Tölts be a gépet</button>
     </div>
 
       <div class="well" style="display: none">
@@ -144,5 +134,9 @@ contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
 <script type="text/javascript" src="src/graph.js"></script>
 <script type="text/javascript" src="src/turingjs.js"></script>
 <script type="text/javascript" src="src/turing.js"></script>
+<script type="text/javascript" src="src/jquery.js"></script>
+<script type="text/javascript" src="src/machines.js"></script>
+
+</div>
   </body>
 </html>

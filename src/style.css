@@ -1,3 +1,40 @@
+table{
+    width:100%;
+}
+table td{
+    white-space: nowrap;  /** added **/
+}
+table td:last-child{
+    width:100%;
+}
+th:hover:after, td:hover:after {
+    position: absolute;
+    margin-top: 0.8em;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+    white-space: pre;
+    font-weight: normal;
+    color: #777;
+    border-radius: 4px;
+    box-shadow: 2px 1px 12px #ccc;
+}
+th:hover:after {
+    content: 'click to remove\A'attr(data-colindex);
+}
+
+tr th:nth-child(1):hover:after {
+    content: 'row number';
+}
+
+td:hover:after {
+    content: 'index: ' attr(data-cellindex);
+}
+
+tr td:nth-child(1):hover:after {
+    content: 'click to remove this row';
+}
 
 ol {
 	padding: 0;
@@ -33,4 +70,95 @@ li.active:before {
 	width: 24px;
 	height: 30px;
 	margin: 0 auto;
+}
+
+/*/////////////////////////////*/
+
+ol {
+	padding: 0;
+	margin-left: 5px;
+}
+
+li {
+	display: table-cell;
+	vertical-align: bottom;
+	padding-right: 5px;
+}
+
+li input[type=text] {
+	font-family: Consolas, Monaco, monospace;
+	font-size: 1.5em;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-align: center;
+	background-color: #fff;
+	color: #000;
+}
+
+li.active input[type=text] {
+	background-color: #fff8de;
+	border-color: #e7ddb4;
+}
+
+li.active:before {
+	content: url('magnet.png');
+	display: block;
+	width: 24px;
+	height: 30px;
+	margin: 0 auto;
+}
+
+.container2 {
+	position:relative;
+	width: max-content;
+	margin: 10px auto;
+	padding: 25px 20px;
+	left: 60%;
+	margin-left: -300px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.actions, .count, .state, .calc {
+	float: left;
+	width: 39%;
+	height: 70px;
+	border: 1px solid #ccc;
+	border-width: 0 1px 1px 0;
+}
+
+.actions p {
+	line-height: 2.5em;
+}
+
+.count, .state, .calc {
+	padding-left: 10px;
+}
+
+.count p, .state p, .calc p {
+	font-size: 2em;
+	font-family: Consolas, Monaco, monospace;
+}
+
+.count {
+	width: 20%;
+}
+
+.state {
+	width: 20%;
+}
+
+.calc {
+	width: 20%;
+	border-right: 0;
+}
+
+#calc {
+	cursor: pointer;
+}
+
+#canvas {
+	clear: both;
+	margin: 100px auto 20px auto;
 }
