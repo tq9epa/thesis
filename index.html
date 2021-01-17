@@ -7,7 +7,15 @@
     <!-- Bootstrap -->
  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg==" crossorigin="anonymous">
  <link rel="stylesheet" href="src/style.css" />
- 
+ <style>
+   textarea{
+    height: 500%;
+    width: 100%;
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+ </style>
 </head>
   <body >
     <nav class="navbar navbar-default">
@@ -56,7 +64,7 @@
     <label for="machines"> Választás az elmentett gépek közül:</label>
     
     <form id="options" method="post"></form>
-    <select id="machines" onchange="change()">
+    <select id="machines">
       <option value="1">egyes</option>
       <option value="2">kettes</option>
       <option value="3">hármas</option>
@@ -83,45 +91,59 @@
 
     
     <div class="well">
-    <h2>Az automata konfigurálása</h2>
-    <label for="files"> Választás az elmentett gépek közül:</label>
+        <h2>Az automata konfigurálása</h2>
+        <label for="files"> Választás az elmentett gépek közül:</label>
 
-    <select id="files">
-      <option value="1">abce.txt</option>
-      <option value="2">1001.txt</option>
-      <option value="2">ababab.txt</option>
-      <option value="3">aabbaabb.txt</option>
-    </select> <br>
-    <label for="c"> Új gép szerkesztése:</label>
-        
-        <button id="c" data-tableID="first">Új oszlop hozzáadása</button>
-        Ábécé új elfogadó betűje: <input type="text" id="addcolumn" size="5" name="asd" required> <br>
+        <select id="file_option">
+          <option value="1">1.txt</option>
+          <option value="2">2.txt</option>
+          <option value="3">3.txt</option>
+        </select> 
+        <button id="choose_file" >Fájl betöltése</button><br><br>
 
-      <button id="r" data-tableID="first">Új sor hozzáadása</button>
+        <div class="newTable" id="newTable">
+          <form id="formTextArea" >
+            <div id="textDiv"></div>
 
-      <form id="formAjaxTable" >
-   
-        
-        
-    <table data-canexpand="true" data-hasrownumbers="true" id="first" class="table table-striped">
-      <tr><th>δ</th><th><input type="text" size="3" value="a" required></th><th><input type="text" size="3" value="b" required></th><th><input type="text" size="3" value="x" required></th><th><input type="text" size="3" value="ü" required></th></tr>
-      <tr><td></td><td><input type="text" size="3" value="1,x,->" required></td><td><input type="text" size="3" value="nem" required></td><td><input type="text" size="3" value="igen" required></td><td><input type="text" size="3" value="nem" required></td></tr>
-      <tr><td></td><td><input type="text" size="3" value="1,a,->" required></td><td><input type="text" size="3" value="1,b,->" required></td><td><input type="text" size="3" value="2,x,<-" required></td><td><input type="text" size="3" value="2,ü,<-" required></td></tr>
-      <tr><td></td><td><input type="text" size="3" value="nem" required></td><td><input type="text" size="3" value="3,x,<-" required></td><td><input type="text" size="3" value="nem" required></td><td><input type="text" size="3" value="nem" required></td></tr>
-      <tr><td></td><td><input type="text" size="3" value="3,a,<-" required></td><td><input type="text" size="3" value="3,b,<-" required></td><td><input type="text" size="3" value="0,x,->" required></td><td><input type="text" size="3" value="nem" required></td></tr>
-    </table>
+          
+          </form>
+        </div>
 
-    <!--
-contacts.set('0', { a: "1,x,->", b: "nem", x: "igen", ü: "nem" })
-contacts.set('1', { a: "1,a,->", b: "1,b,->", x: "2,x,<-", ü: "2,ü,<-" })
-contacts.set('2', { a: "nem", b: "3,x,<-", x: "nem", ü: "nem" })
-contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
--->
-      <input type="submit" id="submitTable" name="submit" value="Automata betöltés" />
-      <input type="button" id="save"  value="Mentés fájlba" />
-      </form>
 
-      <p id="status"></p>
+        <div id="hidableTable" style="display: block">
+         
+                <label for="c"> Új gép szerkesztése:</label>
+
+                    
+                    <button id="c" data-tableID="first">Új oszlop hozzáadása</button>
+                    Ábécé új elfogadó betűje: <input type="text" id="addcolumn" size="5" name="asd" > <br>
+
+                  <button id="r" data-tableID="first">Új sor hozzáadása</button>
+
+                  <form id="formAjaxTable" >
+              
+                    
+                    
+                <table data-canexpand="true" data-hasrownumbers="true" id="first" class="table table-striped">
+                  <tr><th>δ</th><th><input type="text" size="3" value="a" ></th><th><input type="text" size="3" value="b" ></th><th><input type="text" size="3" value="x" ></th><th><input type="text" size="3" value="ü" ></th></tr>
+                  <tr><td></td><td><input type="text" size="3" value="1,x,->" ></td><td><input type="text" size="3" value="nem" ></td><td><input type="text" size="3" value="igen" ></td><td><input type="text" size="3" value="nem" ></td></tr>
+                  <tr><td></td><td><input type="text" size="3" value="1,a,->" ></td><td><input type="text" size="3" value="1,b,->" ></td><td><input type="text" size="3" value="2,x,<-" ></td><td><input type="text" size="3" value="2,ü,<-" ></td></tr>
+                  <tr><td></td><td><input type="text" size="3" value="nem" ></td><td><input type="text" size="3" value="3,x,<-" ></td><td><input type="text" size="3" value="nem" ></td><td><input type="text" size="3" value="nem" ></td></tr>
+                  <tr><td></td><td><input type="text" size="3" value="3,a,<-" ></td><td><input type="text" size="3" value="3,b,<-" ></td><td><input type="text" size="3" value="0,x,->" ></td><td><input type="text" size="3" value="nem" ></td></tr>
+                </table>
+              
+                <!--
+            contacts.set('0', { a: "1,x,->", b: "nem", x: "igen", ü: "nem" })
+            contacts.set('1', { a: "1,a,->", b: "1,b,->", x: "2,x,<-", ü: "2,ü,<-" })
+            contacts.set('2', { a: "nem", b: "3,x,<-", x: "nem", ü: "nem" })
+            contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
+            -->
+                  <input type="submit" id="submitTable" name="submit" value="Automata betöltés" />
+                  <input type="button" id="save"  value="Mentés fájlba" />
+                  </form>
+
+                  <p id="status"></p>
+     </div>
     </div>
     
     <div class="well" id="graph" style="display: none">

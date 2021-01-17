@@ -48,10 +48,42 @@ myForm.onsubmit = function(event) {
   $('button#c').on('click', addColumn);              // add column handler
   $('button#r').on('click', addRow);                 // add row handler
   $('table[data-canexpand]').on('click', 'th:nth-child(n+2)', removeColumn);
+  $('#choose_file').on('click', newtable); 
+
+  function newtable(){
+   
+    document.getElementById('hidableTable').style.display = 'none';
+
+    var e = document.getElementById("file_option")
+    option = e.value;
+   
+
+      var tablearea = document.getElementById('textDiv'),
+    table = document.createElement('table');
+
+    tablearea.appendChild(table);
+    if(document.getElementById("thetextarea")!=null){
+  var asd = document.getElementById("thetextarea")
+  asd.remove();
+}
+
+  var x = document.createElement("TEXTAREA");
+  x.setAttribute("name", "text"); 
+  x.setAttribute("id", "thetextarea"); 
+  x.setAttribute("style", "height:500px"); 
+  x.setAttribute("oninput", 'this.style.height = "";this.style.height = this.scrollHeight + "px"'); 
+  var t = document.createTextNode(JSON.stringify(machines(option)));
+  x.appendChild(t);
+  
+
+tablearea.appendChild(x)
+
+    
+  }
   // remove a column
   function removeColumn(e){
     var currentCell = $(this)
-    console.log(currentCell)
+   
      currentCell = colIndex = +(currentCell.attr('data-colindex').split('#')[1])
      currentCell = forTable = $(this).parents('table').first()
      currentCell = rows = forTable.find('tr');
@@ -66,21 +98,7 @@ myForm.onsubmit = function(event) {
                } );
     reNumber(forTable);
 }
-   /*$('table[data-canexpand]').on('mousedown',function(event)
-	{
-		if (event.which == 3)
-		{
-      console.log("jobb klikk")
-			removeColumn('th:nth-child(n+2)')
-		}
-	});*/
-  
-  
-  /*$(document).on('contextmenu', function(event)
-	{
-		 event.preventDefault();
-	});*/
-	 // remove column handler 'th:nth-child(n+2)'
+   
   $('table[data-canexpand]')
     .on('click', 'tr td:nth-child(1)', removeRow);   // remove row handler
   
@@ -129,24 +147,24 @@ myForm.onsubmit = function(event) {
   // add new column cell
   function addCell(currentRow, rownr) {
     console.log(currentRow+" : "+rownr)
-      var nwcell = $('<td>'+'<input type="text" id="new" size="5" maxlength="10" required>').addClass('new');
+      var nwcell = $('<td>'+'<input type="text" id="new" size="5" maxlength="10" >').addClass('new');
       $(currentRow).append(nwcell);
   }
   
   // add new column header
   function addColumnHeader(headerRow) {
-      if(document.getElementById('addcolumn').value === null ||  document.getElementById('addcolumn').value.match(/^ *$/)=== null){
-      var nwcell = $('<th>'+document.getElementById('addcolumn').value+'</th>');
+      if( document.getElementById('addcolumn').value.match(/^ *$/)=== null || document.getElementById('addcolumn').value == ""){
+      var nwcell = $('<th> <input type="text" id="new" size="3" maxlength="10" value="' + document.getElementById('addcolumn').value +'"> '+'</th>');
       $(headerRow).append(nwcell);
       reNumber(null, headerRow);}
       else{
-        alert("meg kell adj az ábácá egy betüjét")
+        alert("meg kell adj az ábácá egy betüjét asd")
       }
   }
   
   // add a column
   function addColumn(){
-    if(document.getElementById('addcolumn').value === null ||  document.getElementById('addcolumn').value.match(/^ *$/)=== null){
+    if(document.getElementById('addcolumn').value.match(/^ *$/)=== null || document.getElementById('addcolumn').value == ""){
      var forTable = $('#'+$(this).attr('data-tableID')); 
      $.each( forTable.find('tr'),
              function(i, row) {
@@ -211,6 +229,11 @@ myForm.onsubmit = function(event) {
       if (value === searchValue)
         return key;
     }
+  }
+
+  function getConfig(){
+    console.log(JSON.parse($('textarea#thetextarea').val()))
+    return JSON.parse($('textarea#thetextarea').val())
   }
   var myForm2 = document.getElementById('formAjaxTable');
   myForm2.onsubmit = function(event) {
@@ -283,6 +306,7 @@ function hidediv(){
  
   document.getElementById("graph").style.display = 'block';
 }
+
 /*function init() {
 	
   document.getElementById("submitTable").addEventListener('click', hidediv, true);

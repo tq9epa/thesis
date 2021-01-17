@@ -1,10 +1,17 @@
 
 $(function () {
-   
+
+	/*var sd = JSON.parse($('textarea#thetextarea').val())
+	console.log(sd)
+	
+	if(sd)
+	console.log(JSON.parse($('textarea#thetextarea').val()))
+*/
     var e = document.getElementById("machines")
     option = e.value;
     
-            console.log(option);
+			console.log(option);
+			getConfig()
     var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
     turing.tape = mapGetter().get(option+"tape");
     turing.calc = mapGetter().get(option+"calc");
