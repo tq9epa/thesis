@@ -1,18 +1,25 @@
 
 $(function () {
 
-	/*var sd = JSON.parse($('textarea#thetextarea').val())
-	console.log(sd)
-	
-	if(sd)
-	console.log(JSON.parse($('textarea#thetextarea').val()))
-*/
+	console.log("asd")
     var e = document.getElementById("machines")
     option = e.value;
     
-			console.log(option);
-			getConfig()
-    var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
+			
+			try {
+
+				fs.readFile('newconfig.txt', function (err, data) {
+					if (err) throw err;
+					var turing = new Turing(JSON.parse(data), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
+				  });
+				//var turing = new Turing(getConfig(), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
+				console.log("try")
+				
+			} catch (error) {
+				var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
+				console.log("catch")
+			}
+    //var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
     turing.tape = mapGetter().get(option+"tape");
     turing.calc = mapGetter().get(option+"calc");
     turing.reset();

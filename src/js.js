@@ -65,6 +65,7 @@ myForm.onsubmit = function(event) {
     if(document.getElementById("thetextarea")!=null){
   var asd = document.getElementById("thetextarea")
   asd.remove();
+  
 }
 
   var x = document.createElement("TEXTAREA");
@@ -79,6 +80,11 @@ myForm.onsubmit = function(event) {
 tablearea.appendChild(x)
 
     
+  }
+
+  function getConfig(){
+    console.log( JSON.parse($('textarea#thetextarea').val()))
+    return $('textarea#thetextarea').val()
   }
   // remove a column
   function removeColumn(e){
@@ -231,10 +237,7 @@ tablearea.appendChild(x)
     }
   }
 
-  function getConfig(){
-    console.log(JSON.parse($('textarea#thetextarea').val()))
-    return JSON.parse($('textarea#thetextarea').val())
-  }
+  
   var myForm2 = document.getElementById('formAjaxTable');
   myForm2.onsubmit = function(event) {
     event.preventDefault();
@@ -307,18 +310,3 @@ function hidediv(){
   document.getElementById("graph").style.display = 'block';
 }
 
-/*function init() {
-	
-  document.getElementById("submitTable").addEventListener('click', hidediv, true);
-  
-  
-}
-
-window.addEventListener('load', init, false);*/
-
-
-
-/*TODO
-max 10 abece adhato meg, ennek ellenorzese
-
-*/

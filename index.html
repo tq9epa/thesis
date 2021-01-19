@@ -1,3 +1,8 @@
+<!--
+TODO
+  terminálás előtt felesleges karakterek törlése
+-->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -95,11 +100,11 @@
         <label for="files"> Választás az elmentett gépek közül:</label>
 
         <select id="file_option">
-          <option value="1">1.txt</option>
-          <option value="2">2.txt</option>
-          <option value="3">3.txt</option>
+          <option value="1">1. példa</option>
+          <option value="2">2. példa</option>
+          <option value="3">3. példa txt</option>
         </select> 
-        <button id="choose_file" >Fájl betöltése</button><br><br>
+        <button id="choose_file" >Fájl importálás</button><br><br>
 
         <div class="newTable" id="newTable">
           <form id="formTextArea" >
@@ -107,6 +112,8 @@
 
           
           </form>
+          <a href="" id="a">katt a letöltéshez</a>
+          <input type="button" onclick="download()" value="Automata betöltés" />
         </div>
 
 
@@ -160,6 +167,19 @@
 <script type="text/javascript" src="src/turing.js"></script>
 <script type="text/javascript" src="src/jquery.js"></script>
 <script type="text/javascript" src="src/machines.js"></script>
+
+<script>
+  
+    function download() {
+  var a = document.getElementById("a");
+  var file = new Blob([getConfig()], {type: 'text/plain'});
+  a.href = URL.createObjectURL(file);
+  a.download = 'newconfig.txt';
+}
+     
+  
+  
+</script>
 
 </div>
   </body>
