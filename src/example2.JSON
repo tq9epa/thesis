@@ -1,0 +1,332 @@
+{
+    "s1:1": {
+        "state": "s2",
+        "value": "X",
+        "move": "right"
+    },
+    "s1:!": {
+        "state": "s4",
+        "value": "!",
+        "move": "right"
+    },
+    "s1:0": {
+        "state": "s19",
+        "value": "0",
+        "move": "right"
+    },
+    "s2:1": {
+        "state": "s2",
+        "value": "1",
+        "move": "right"
+    },
+    "s2:!": {
+        "state": "s2",
+        "value": "!",
+        "move": "right"
+    },
+    "s2:=": {
+        "state": "s2",
+        "value": "=",
+        "move": "right"
+    },
+    "s2:": {
+        "state": "s3",
+        "value": "1",
+        "move": "left"
+    },
+    "s3:!": {
+        "state": "s3",
+        "value": "!",
+        "move": "left"
+    },
+    "s3:=": {
+        "state": "s3",
+        "value": "=",
+        "move": "left"
+    },
+    "s3:1": {
+        "state": "s3",
+        "value": "1",
+        "move": "left"
+    },
+    "s3:X": {
+        "state": "s1",
+        "value": "X",
+        "move": "right"
+    },
+    "s4:1": {
+        "state": "s4",
+        "value": "1",
+        "move": "right"
+    },
+    "s4:!": {
+        "state": "s4",
+        "value": "!",
+        "move": "right"
+    },
+    "s4:=": {
+        "state": "s4",
+        "value": "=",
+        "move": "right"
+    },
+    "s4:": {
+        "state": "s5",
+        "value": "*",
+        "move": "left"
+    },
+    "s5:X": {
+        "state": "s5",
+        "value": "X",
+        "move": "left"
+    },
+    "s5:1": {
+        "state": "s5",
+        "value": "1",
+        "move": "left"
+    },
+    "s5:!": {
+        "state": "s5",
+        "value": "!",
+        "move": "left"
+    },
+    "s5:=": {
+        "state": "s5",
+        "value": "=",
+        "move": "left"
+    },
+    "s5:": {
+        "state": "s6",
+        "value": "",
+        "move": "right"
+    },
+    "s5:Z": {
+        "state": "s7",
+        "value": "Z",
+        "move": "right"
+    },
+    "s6:X": {
+        "state": "s13",
+        "value": "Y",
+        "move": "right"
+    },
+    "s13:X": {
+        "state": "s7",
+        "value": "Y",
+        "move": "right"
+    },
+    "s13:!": {
+        "state": "s16",
+        "value": "!",
+        "move": "right"
+    },
+    "s7:X": {
+        "state": "s8",
+        "value": "Z",
+        "move": "right"
+    },
+    "s7:!": {
+        "state": "s14",
+        "value": "!",
+        "move": "right"
+    },
+    "s8:X": {
+        "state": "s8",
+        "value": "X",
+        "move": "right"
+    },
+    "s8:1": {
+        "state": "s8",
+        "value": "1",
+        "move": "right"
+    },
+    "s8:!": {
+        "state": "s9",
+        "value": "!",
+        "move": "right"
+    },
+    "s9:=": {
+        "state": "s9",
+        "value": "=",
+        "move": "right"
+    },
+    "s9:1": {
+        "state": "s10",
+        "value": "X",
+        "move": "right"
+    },
+    "s9:*": {
+        "state": "s12",
+        "value": "*",
+        "move": "left"
+    },
+    "s10:1": {
+        "state": "s10",
+        "value": "1",
+        "move": "right"
+    },
+    "s10:*": {
+        "state": "s10",
+        "value": "*",
+        "move": "right"
+    },
+    "s10:": {
+        "state": "s11",
+        "value": "1",
+        "move": "left"
+    },
+    "s11:1": {
+        "state": "s11",
+        "value": "1",
+        "move": "left"
+    },
+    "s11:*": {
+        "state": "s11",
+        "value": "*",
+        "move": "left"
+    },
+    "s11:X": {
+        "state": "s9",
+        "value": "X",
+        "move": "right"
+    },
+    "s12:X": {
+        "state": "s12",
+        "value": "1",
+        "move": "left"
+    },
+    "s12:=": {
+        "state": "s5",
+        "value": "=",
+        "move": "left"
+    },
+    "s14:=": {
+        "state": "s14",
+        "value": "=",
+        "move": "right"
+    },
+    "s14:1": {
+        "state": "s14",
+        "value": "1",
+        "move": "right"
+    },
+    "s14:*": {
+        "state": "s14",
+        "value": "1",
+        "move": "right"
+    },
+    "s14:": {
+        "state": "s19",
+        "value": "",
+        "move": "left"
+    },
+    "s19:1": {
+        "state": "s15",
+        "value": "",
+        "move": "left"
+    },
+    "s15:1": {
+        "state": "s15",
+        "value": "1",
+        "move": "left"
+    },
+    "s15:=": {
+        "state": "s15",
+        "value": "=",
+        "move": "left"
+    },
+    "s15:!": {
+        "state": "s15",
+        "value": "!",
+        "move": "left"
+    },
+    "s15:Z": {
+        "state": "s15",
+        "value": "X",
+        "move": "left"
+    },
+    "s15:Y": {
+        "state": "s16",
+        "value": "Y",
+        "move": "right"
+    },
+    "s16:1": {
+        "state": "s16",
+        "value": "1",
+        "move": "right"
+    },
+    "s16:!": {
+        "state": "s16",
+        "value": "!",
+        "move": "right"
+    },
+    "s16:=": {
+        "state": "s16",
+        "value": "=",
+        "move": "right"
+    },
+    "s16:X": {
+        "state": "s16",
+        "value": "X",
+        "move": "right"
+    },
+    "s16:": {
+        "state": "s17",
+        "value": "*",
+        "move": "left"
+    },
+    "s16:*": {
+        "state": "s99",
+        "value": "",
+        "move": "left"
+    },
+    "s17:X": {
+        "state": "s17",
+        "value": "X",
+        "move": "left"
+    },
+    "s17:1": {
+        "state": "s17",
+        "value": "1",
+        "move": "left"
+    },
+    "s17:!": {
+        "state": "s17",
+        "value": "!",
+        "move": "left"
+    },
+    "s17:=": {
+        "state": "s17",
+        "value": "=",
+        "move": "left"
+    },
+    "s17:Y": {
+        "state": "s18",
+        "value": "Y",
+        "move": "right"
+    },
+    "s18:X": {
+        "state": "s7",
+        "value": "Y",
+        "move": "right"
+    },
+    "s18:!": {
+        "state": "s16",
+        "value": "!",
+        "move": "right"
+    },
+    "s19:!": {
+        "state": "s19",
+        "value": "!",
+        "move": "right"
+    },
+    "s19:=": {
+        "state": "s19",
+        "value": "=",
+        "move": "right"
+    },
+    "s19:": {
+        "state": "s99",
+        "value": "1",
+        "move": "left"
+    }
+}

@@ -1,50 +1,11 @@
 <?php
-//https://uploadcare.com/blog/file-upload-ajax/
-   
-    
-   
-  
-if(empty($_POST['fileAjax']) )  {
 
-        if($_FILES['fileAjax']['type']=="text/plain") {
-                
-                
+$path = "./";
+$files = preg_grep('~\.(JSON)$~', scandir($path));
 
-                
-                $fh = fopen($_FILES['fileAjax']['name'],'r');
-                while ($line = fgets($fh)) {
-                     echo($line);
-                }
-                fclose($fh);
-            }
-        else{
-            echo "worong file extension";
-            }
-}
-else{
-echo "no file";
+//$files = array_diff(scandir($path), array('.', '..'));
 
-}
-if(empty($_POST['fileAjaxTable']) )  {
+print_r(implode(',',$files))
 
-    if($_FILES['fileAjax']['type']=="text/plain") {
-            
-            
-
-            
-            $fh = fopen($_FILES['fileAjax']['name'],'r');
-            while ($line = fgets($fh)) {
-                 echo($line);
-            }
-            fclose($fh);
-        }
-    else{
-        echo "worong file extension";
-        }
-}
-else{
-echo "no file";
-
-}
 
 ?>

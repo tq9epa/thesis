@@ -4,44 +4,62 @@ var statusP = document.getElementById('status');
 
 
 let finalMap = new Map()
+let examples = new Array()
+  examples = null
+
+$('#check').on('click', ajaxfunction);   
+
+function ajaxfunction(){
+  
+  var req = new XMLHttpRequest();
+  
+  req.onreadystatechange = function() {
+    //Is request finished? Does the requested page exist?
+    if( req.status==200) {   
+      //Your HTML arrives here
+      //statusP.innerHTML = req.responseText
+       examples = req.responseText.split(",")
+      statusP.innerHTML = examples
+     
+    }
+  }
+  
+  req.open("GET","./src/upload.php",true)  //true indicates ASYNCHRONOUS
+  req.send(null);
+
+ if(examples!=null){
+  
+  var myDiv = document.getElementById("dropd");
 
 
-myForm.onsubmit = function(event) {
-    event.preventDefault();
+//Create and append select list
 
-    statusP.innerHTML = 'Uploading...';
+var selectList = document.createElement("select");
 
-    // Get the files from the form input
-    var files = myFile.files;
-    console.log(files)
-    // Create a FormData object
-    var formData = new FormData();
-
-    // Select only the first file from the input array
-    var file = files[0]; 
-   
-    // Add the file to the AJAX request
-    formData.append('fileAjax', file, file.name);
-   
-    // Set up the request
-    var xhr = new XMLHttpRequest();
-
-    // Open the connection
-    xhr.open('POST', 'upload.php', true);
-
-    // Set up a handler for when the task for the request is complete
-    xhr.onload = function () {
-      if (xhr.status == 200) {
-        statusP.innerHTML = "Uploaded succesfully";
-        statusP2.innerHTML = this.responseText;
-        
-      } else {
-        statusP.innerHTML = 'Upload error. Try again.';
-      }
-    };
-    // Send the data.
-    xhr.send(formData);
+if(document.getElementById("mySelect")!=null){
+  var asd = document.getElementById("mySelect")
+  asd.remove();
+  
 }
+selectList.setAttribute("id", "mySelect");
+myDiv.appendChild(selectList);
+
+
+
+
+  for (var i = 0; i < examples.length; i++) {
+   
+      var option = document.createElement("option");
+      option.setAttribute("value",examples[i]);
+      option.text = examples[i];
+      selectList.appendChild(option);
+  }
+}
+  
+    
+}
+
+
 
 //https://stackoverflow.com/questions/25134998/how-to-give-a-unique-id-for-each-cell-when-adding-custom-columns
 
@@ -58,7 +76,7 @@ myForm.onsubmit = function(event) {
     option = e.value;
    
 
-      var tablearea = document.getElementById('textDiv'),
+    var tablearea = document.getElementById('textDiv'),
     table = document.createElement('table');
 
     tablearea.appendChild(table);
@@ -74,13 +92,36 @@ myForm.onsubmit = function(event) {
   x.setAttribute("style", "height:500px"); 
   x.setAttribute("oninput", 'this.style.height = "";this.style.height = this.scrollHeight + "px"'); 
   var t = document.createTextNode(JSON.stringify(machines(option)));
+
+
+
   x.appendChild(t);
   
 
 tablearea.appendChild(x)
 
+
+readFile('File:\\')
     
   }
+
+  function readFile(file)
+{
+    var f = new XMLHttpRequest();
+    f.open("GET", file, false);
+    f.onreadystatechange = function ()
+    {
+        if(f.readyState === 4)
+        {
+            if(f.status === 200 || f.status == 0)
+            {
+                var res= f.responseText;
+                alert(res);
+            }
+        }
+    }
+    f.send(null);
+}
 
   function getConfig(){
     console.log( JSON.parse($('textarea#thetextarea').val()))

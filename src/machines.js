@@ -1,7 +1,7 @@
 
 function machines(asd){
 
-    console.log("machines"+asd)
+ 
 
 switch (asd) {
     case "1":

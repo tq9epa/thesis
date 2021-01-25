@@ -22,7 +22,7 @@ TODO
 }
  </style>
 </head>
-  <body >
+  <body onload="ajaxfunction()">
     <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
@@ -81,12 +81,16 @@ TODO
     
     </div>
 
-      <div class="well" style="display: none">
+      <div class="well" style="display: block">
       <h2>Szalag importálása</h2>
-    <form id="formAjax" method="POST">
-        <input type="file" id="fileAjax" name="fileAjax" value="Tallózás"/><br /><br />
-        <input type="submit" id="submit" name="submit" value="Feltöltés" />
-    </form>
+   
+       
+       
+
+        <div id="it_is_files">
+
+        </div>
+    
     <p id="status"></p>
     <p id="status2"></p>
   
@@ -97,6 +101,9 @@ TODO
     
     <div class="well">
         <h2>Az automata konfigurálása</h2>
+
+        <div id="dropd"></div>
+
         <label for="files"> Választás az elmentett gépek közül:</label>
 
         <select id="file_option">
@@ -104,7 +111,8 @@ TODO
           <option value="2">2. példa</option>
           <option value="3">3. példa txt</option>
         </select> 
-        <button id="choose_file" >Fájl importálás</button><br><br>
+        <button  id="check"  >Lista frissítésése</button>
+        <button id="choose_file" >Fájl beolvasása</button><br><br>
 
         <div class="newTable" id="newTable">
           <form id="formTextArea" >
@@ -112,7 +120,7 @@ TODO
 
           
           </form>
-          <a href="" id="a">katt a letöltéshez</a>
+          <button href="" id="a">katt a letöltéshez</button>
           <input type="button" onclick="download()" value="Automata betöltés" />
         </div>
 
