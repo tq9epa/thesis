@@ -2,126 +2,111 @@ var myForm = document.getElementById('formAjax');
 var myFile = document.getElementById('fileAjax');  
 var statusP = document.getElementById('status');
 
+document.getElementById('choose_file').addEventListener('click',appendToDiv); 
+document.getElementById('downloadfile').addEventListener('click',download ); 
+document.getElementById('listupdate').addEventListener('click',updateFileList); 
+
+document.getElementById('tapeaddv').addEventListener('click',tipp); 
+document.getElementById('firstaddv').addEventListener('click',tipp); 
+document.getElementById('lastaddv').addEventListener('click',tipp); 
+document.getElementById('finaladdv').addEventListener('click',tipp); 
+
 
 let finalMap = new Map()
-let examples = new Array()
-  examples = null
 
-$('#check').on('click', ajaxfunction);   
-
-function ajaxfunction(){
-  
-  var req = new XMLHttpRequest();
-  
-  req.onreadystatechange = function() {
-    //Is request finished? Does the requested page exist?
-    if( req.status==200) {   
-      //Your HTML arrives here
-      //statusP.innerHTML = req.responseText
-       examples = req.responseText.split(",")
-      statusP.innerHTML = examples
-     
-    }
-  }
-  
-  req.open("GET","./src/upload.php",true)  //true indicates ASYNCHRONOUS
-  req.send(null);
-
- if(examples!=null){
-  
-  var myDiv = document.getElementById("dropd");
+function tipp(){
+  r = document.getElementById("jsonSelect").value
 
 
-//Create and append select list
+  if(r.includes("example1")){
+  document.getElementById("tape").value = "['1', '1', '1', '*', '1', '1', '*', '1', '=']";
+  document.getElementById("first").value = "s1";
+  document.getElementById("last").value = "s9";
+  document.getElementById("final").value = "3! =";}
 
-var selectList = document.createElement("select");
+if(r.includes("example2")){
+  document.getElementById("tape").value = "['1', '1', '1', '!', '=']";
+  document.getElementById("first").value = "s1";
+  document.getElementById("last").value = "s99";
+  document.getElementById("final").value = "3! =";}
 
-if(document.getElementById("mySelect")!=null){
-  var asd = document.getElementById("mySelect")
-  asd.remove();
-  
+if(r.includes("example3")){
+  document.getElementById("tape").value = "['1', '1', '1', '*', '1', '1', '=']";
+  document.getElementById("first").value = "s1";
+  document.getElementById("last").value = "s8";
+  document.getElementById("final").value = "3 * 2 =";}
+
 }
-selectList.setAttribute("id", "mySelect");
-myDiv.appendChild(selectList);
 
-
-
-
-  for (var i = 0; i < examples.length; i++) {
-   
-      var option = document.createElement("option");
-      option.setAttribute("value",examples[i]);
-      option.text = examples[i];
-      selectList.appendChild(option);
-  }
-}
+async function appendToDiv(){
   
+  r = document.getElementById("jsonSelect").value
+  fromphp = await fetchToServer("appendToDiv",r)
+  $("#jsonarea").empty();
+  document.getElementById('jsonarea').append(fromphp)
+  console.log(fromphp.substring(0,10))
     
 }
 
 
+async function fetchToServer(header,data){
 
+  var form = new FormData();
+  form.append(header, data);
+  asd = ""
+  //console.log(form.values().next().value) // return and obj contain JSON string
+  
+  var data = await fetch('src/readfile.php', {
+      method: 'POST',
+      body: form
+  })
+  .then(function (response) {
+    return response.text();
+  })
+  .then(function (body) {
+   
+    return body
+  });
+  console.log(data)
+  //await delay()
+  return data
+}
+
+function download() {
+  //var newFileName = prompt("Kérem, adja meg a menteni kívánt fájl nevét!");
+  asd = document.getElementById('jsonarea').innerHTML
+  
+  //getOutput('?a=download&q='+newFileName+'&path='+ asd)
+     
+  fetchToServer('savefile',asd)
+      
+}
+
+async function updateFileList(){
+
+  splitted = await fetchToServer("listnull","")
+  splitted = splitted.split(" ")
+  var select = document.getElementById("jsonSelect"); 
+
+  for(var i = 0; i < splitted.length; i++) {
+  var opt = splitted[i];
+  var el = document.createElement("option");
+  el.textContent = opt;
+  el.value = opt;
+  select.appendChild(el);
+  
+}
+}
+
+  
 //https://stackoverflow.com/questions/25134998/how-to-give-a-unique-id-for-each-cell-when-adding-custom-columns
 
   $('button#c').on('click', addColumn);              // add column handler
   $('button#r').on('click', addRow);                 // add row handler
   $('table[data-canexpand]').on('click', 'th:nth-child(n+2)', removeColumn);
-  $('#choose_file').on('click', newtable); 
-
-  function newtable(){
-   
-    document.getElementById('hidableTable').style.display = 'none';
-
-    var e = document.getElementById("file_option")
-    option = e.value;
-   
-
-    var tablearea = document.getElementById('textDiv'),
-    table = document.createElement('table');
-
-    tablearea.appendChild(table);
-    if(document.getElementById("thetextarea")!=null){
-  var asd = document.getElementById("thetextarea")
-  asd.remove();
   
-}
-
-  var x = document.createElement("TEXTAREA");
-  x.setAttribute("name", "text"); 
-  x.setAttribute("id", "thetextarea"); 
-  x.setAttribute("style", "height:500px"); 
-  x.setAttribute("oninput", 'this.style.height = "";this.style.height = this.scrollHeight + "px"'); 
-  var t = document.createTextNode(JSON.stringify(machines(option)));
-
-
-
-  x.appendChild(t);
+ 
   
-
-tablearea.appendChild(x)
-
-
-readFile('File:\\')
-    
-  }
-
-  function readFile(file)
-{
-    var f = new XMLHttpRequest();
-    f.open("GET", file, false);
-    f.onreadystatechange = function ()
-    {
-        if(f.readyState === 4)
-        {
-            if(f.status === 200 || f.status == 0)
-            {
-                var res= f.responseText;
-                alert(res);
-            }
-        }
-    }
-    f.send(null);
-}
 
   function getConfig(){
     console.log( JSON.parse($('textarea#thetextarea').val()))
@@ -350,4 +335,3 @@ function hidediv(){
  
   document.getElementById("graph").style.display = 'block';
 }
-

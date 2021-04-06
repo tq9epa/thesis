@@ -5,15 +5,14 @@ function machines(asd){
 
 switch (asd) {
     case "1":
+		//console.log(machines1())
         return machines1()
-        break;
     case "2":
+		//console.log(machines2())
         return machines2()
-        break;
     case "3":
+		//console.log(machines3())
         return machines3()
-        break;
-
     default:
         console.log("error")
         break;

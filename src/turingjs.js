@@ -1,28 +1,35 @@
 
-$(function () {
+$(async function () {
 
 	
-    var e = document.getElementById("machines")
-    option = e.value;
-    
+    //var e = document.getElementById("machines")
+    option = "2"
+    //console.log(machines(option))
 			
 			try {
+				if(document.getElementById("jsonSelect").value != ""){
+					toLoadMachine = await fetchToServer("appendToDiv",document.getElementById("jsonSelect").value)
+					console.log("asd")
+				}
+				toLoadMachine = JSON.parse(toLoadMachine)	
+				var turing = new Turing(toLoadMachine, document.getElementById("first").value, document.getElementById("last").value);
+				console.log("try")
+				if (err) throw err;
 
-				fs.readFile('newconfig.txt', function (err, data) {
-					if (err) throw err;
-					var turing = new Turing(JSON.parse(data), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
-				  });
-				//var turing = new Turing(getConfig(), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
+				turing.tape = document.getElementById("tape").value
+				turing.calc = document.getElementById("final").value
+				turing.reset();
 				
-				
-			} catch (error) {
+			} catch (err) {
 				var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
-				
+				console.log("catch")
+
+				turing.tape = ['r', 'o', 's', 's', 'z', ' ', 'b','e', 'm', 'e', 'n', 'e', 't']
+				turing.calc = "error";
+				turing.reset();
 			}
     //var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
-    turing.tape = mapGetter().get(option+"tape");
-    turing.calc = mapGetter().get(option+"calc");
-    turing.reset();
+    
 
     $('#run').click(function () {
         turing.run();
@@ -38,8 +45,10 @@ $(function () {
 
     $('#calc').click(function () {
         
-        switch (option) {
-            case "1":
+        
+				r = document.getElementById("jsonSelect").value
+				
+  				if(r.includes("example1")){
                 var calc = prompt('Adj meg egy imput szalagot (e.g. 4!):');
 				if (calc) {
 					var match = calc.match(/([0-9]+)(!)/i);
@@ -65,8 +74,8 @@ $(function () {
 						alert('Valami nem jó!');
 					}
 				}
-                break;
-            case "2":
+			}
+            if(r.includes("example2")){
                 var calc = prompt('Adj meg egy imput szalagot (e.g. 4!):');
 				if (calc) {
 					var match = calc.match(/([0-9]+)(!)/i);
@@ -91,8 +100,9 @@ $(function () {
 						alert('Valami nem jó!');
 					}
 				}
-                break;
-            case "3":
+			}
+
+			if(r.includes("example3")){
                 var calc = prompt('Adj meg egy imput szalagot(e.g. 3 * 2):');
 				if (calc) {
 					var match = calc.match(/([0-9]+)[ ]*\*[ ]*([0-9]+)/i);
@@ -123,9 +133,7 @@ $(function () {
 						alert('Valami nem jó!');
 					}
 				}
-                break;
-            
-            }
+			}
        
     });
 });

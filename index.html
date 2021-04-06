@@ -7,7 +7,7 @@ TODO
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Turing Machine Visualizer</title>
+    <title>Turing-gép szemléltető</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg==" crossorigin="anonymous">
@@ -22,11 +22,11 @@ TODO
 }
  </style>
 </head>
-  <body onload="ajaxfunction()">
+  <body>
     <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Turing Machine Visualizer</a>
+            <a class="navbar-brand" href="#">Turing-gép szemléltető</a>
           </div>
         </div>
       </nav>
@@ -66,62 +66,57 @@ TODO
 
       <div id="canvas"></div>
     </div>
-    <label for="machines"> Választás az elmentett gépek közül:</label>
+    <label for="machines"> Választás az elmentett gépek közül:</label><br>
     
-    <form id="options" method="post"></form>
-    <select id="machines">
-      <option value="1">egyes</option>
-      <option value="2">kettes</option>
-      <option value="3">hármas</option>
-    </select> 
-    </form><br>
-    <label for="tape"> Vagy új szalag megadása:</label>
-   <input type="text" id="tape" size="20" name="tape" ><br>
-    <button onClick="window.location.reload();">Tölts be a gépet</button>
-    
-    </div>
-
-      <div class="well" style="display: block">
-      <h2>Szalag importálása</h2>
    
-       
-       
+    <select id="jsonSelect">
+     
+    </select> 
 
-        <div id="it_is_files">
-
-        </div>
+    <div id="dropd"></div>
+    <button id="listupdate" >Lista frissítésése</button><br>
     
-    <p id="status"></p>
-    <p id="status2"></p>
-  
+   
+
+  <form>
+    <label for="tape"> Input megadása:</label>
+    <input type="text" id="tape" size="20" name="tape" ><a id="tapeaddv"> tipp</a> <br>
+    <label for="tape"> kezdő állapot</label>
+    <input type="text" id="first" size="5" name="tape" ><a id="firstaddv"> tipp</a> <br>
+    <label for="tape"> végső állapot</label>
+    <input type="text" id="last" size="5" name="tape" ><a id="lastaddv"> tipp</a> <br>
+    <label for="tape"> eredmény</label>
+    <input type="text" id="final" size="5" name="tape" ><a id="finaladdv"> tipp</a> <br>
+    <input type="submit" id="loadmachine" value="Tölts be a gépet">
+  </form>
     </div>
-  
-    
-
+   
+     
     
     <div class="well">
         <h2>Az automata konfigurálása</h2>
 
         <div id="dropd"></div>
 
-        <label for="files"> Választás az elmentett gépek közül:</label>
+        <label for="files">Jölöld ki a fenti JSON fájlok közül a megfelelőt</label>
 
-        <select id="file_option">
-          <option value="1">1. példa</option>
-          <option value="2">2. példa</option>
-          <option value="3">3. példa txt</option>
-        </select> 
-        <button  id="check"  >Lista frissítésése</button>
-        <button id="choose_file" >Fájl beolvasása</button><br><br>
+        
+      
+       
+        <button id="choose_file"  >Fájl beolvasása</button><br><br>
 
         <div class="newTable" id="newTable">
-          <form id="formTextArea" >
-            <div id="textDiv"></div>
+          <form id="formTextArea" >        
+                <div id="textDiv"></div>
+                
+          </form>
+          <div id="jsonarea" contentEditable="true" ></div>
+          
 
           
-          </form>
-          <button href="" id="a">katt a letöltéshez</button>
-          <input type="button" onclick="download()" value="Automata betöltés" />
+          <button type="button" id="downloadfile" >katt a letöltéshez</button>
+
+          <input type="button"  value="Automata betöltés" />
         </div>
 
 
@@ -176,18 +171,7 @@ TODO
 <script type="text/javascript" src="src/jquery.js"></script>
 <script type="text/javascript" src="src/machines.js"></script>
 
-<script>
-  
-    function download() {
-  var a = document.getElementById("a");
-  var file = new Blob([getConfig()], {type: 'text/plain'});
-  a.href = URL.createObjectURL(file);
-  a.download = 'newconfig.txt';
-}
-     
-  
-  
-</script>
+
 
 </div>
   </body>
