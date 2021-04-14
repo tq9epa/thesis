@@ -5,166 +5,197 @@ TODO
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Turing-gép szemléltető</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg==" crossorigin="anonymous">
- <link rel="stylesheet" href="src/style.css" />
- <style>
-   textarea{
-    height: 500%;
-    width: 100%;
-   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-}
- </style>
+
+<head>
+  <meta charset="utf-8">
+  <title>Turing-gép szemléltető</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet"
+    integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg=="
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="src/style.css" />
+  <style>
+    textarea {
+      height: 500%;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;
+      /* Firefox, other Gecko */
+      box-sizing: border-box;
+      /* Opera/IE 8+ */
+    }
+  </style>
 </head>
-  <body>
-    <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Turing-gép szemléltető</a>
-          </div>
-        </div>
-      </nav>
-      <ol class="turing"></ol>
+
+<body>
+  <nav class="navbar navbar-default">
     <div class="container">
-
-  
-      
-    <div class="well">
-    <h2>Szalag futtatása</h2>
-  
-   
-  
-    <div class="container2">
-      <div class="actions">
-        <h2>Vezérlők</h2>
-        <p>
-          <input id="run" type="button" value="Indítás" />
-          <input id="step" type="button" value="Következő" />
-          <input id="reset" type="button" value="Reset" />
-        </p>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Turing-gép szemléltető</a>
       </div>
-      <div class="count">
-        <h2>Lépés</h2>
-        <p id="count"></p>
-      </div>
-      <div class="state">
-        <h2>Állapot</h2>
-        <p id="state"></p>
-      </div>
-      <div class="calc">
-        <h2>Eredmény</h2>
-        <p id="calc"></p>
-      </div>
-      
-
-      <div id="canvas"></div>
     </div>
-    <label for="machines"> Választás a fájlokba mentett gépek közül:</label><br>
-    
-   
-    <select id="jsonSelect"></select> 
-    <button id="listupdate" >Lista frissítésése</button><br>
-    
-   <form action="">
-    <label for="tape"> Input megadása:</label>
-    <input type="text" id="tape" size="20" name="tape" ><a id="tapeaddv"> tipp</a> <br>
-    <label for="tape"> kezdő állapot</label>
-    <input type="text" id="first" size="5" name="tape" ><a id="firstaddv"> tipp</a> <br>
-    <label for="tape"> végső állapot</label>
-    <input type="text" id="last" size="5" name="tape" ><a id="lastaddv"> tipp</a> <br>
-    <label for="tape"> eredmény</label>
-    <input type="text" id="final" size="5" name="tape" ><a id="finaladdv"> tipp</a> <br>
-    <input type="submit" id="loadmachine" value="Tölts be a gépet">
-  </form>
-    </div>
-    <div class="well" id="graph" style="display: none">
-      <h2>Gráf</h2>
-      <canvas id="myCanvas" width="600" height="600" style="border:1px solid #0e0a0a;">
-      </canvas>
-  
-      </div>
-     
-    
+  </nav>
+  <ol class="turing"></ol>
+  <div class="container">
+
+
+
     <div class="well">
-        <h2>Az automata konfigurálása</h2>
+      <h2>Szalag futtatása</h2>
 
-        
-        <label for="files">Jölöld ki a fenti JSON fájlok közül a megfelelőt</label>
 
-        
-      
-       
-        <button id="choose_file"  >Fájl beolvasása</button><br><br>
 
-        <div class="newTable" id="newTable">
-          <form id="formTextArea" >        
-                <div id="textDiv"></div>
-                
-          </form>
-          <div id="jsonarea" contentEditable="true" ></div>
-          
-
-          
-          <button type="button" id="downloadfile" >Mentés fájlba</button>
-
-          
+      <div class="container2">
+        <div class="actions">
+          <h2>Vezérlők</h2>
+          <p>
+            <input id="run" type="button" value="Indítás" />
+            <input id="step" type="button" value="Következő" />
+            <input id="reset" type="button" value="Reset" />
+          </p>
+        </div>
+        <div class="count">
+          <h2>Lépés</h2>
+          <p id="count"></p>
+        </div>
+        <div class="state">
+          <h2>Állapot</h2>
+          <p id="state"></p>
+        </div>
+        <div class="calc">
+          <h2>Eredmény</h2>
+          <p id="calc"></p>
         </div>
 
 
-        <div id="hidableTable" style="display: block">
-         
-                <label for="c"> Új gép szerkesztése:</label>
+        <div id="canvas"></div>
+      </div>
+      <label for="machines"> Választás a fájlokba mentett gépek közül:</label><br>
 
-                    
-                    <button id="c" data-tableID="first">Új oszlop hozzáadása</button>
-                    Ábécé új elfogadó betűje: <input type="text" id="addcolumn" size="5" name="asd" > <br>
 
-                  <button id="r" data-tableID="first">Új sor hozzáadása</button>
+      <select id="jsonSelect"></select>
+      <button id="listupdate">Lista frissítésése</button><br>
 
-                 
-              
-                    
-                    
-                <table data-canexpand="true" data-hasrownumbers="true" id="theTable" class="table table-striped">
-                  <tr><th>δ</th><th><input type="text" size="3" value="a" ></th><th><input type="text" size="3" value="b" ></th><th><input type="text" size="3" value="x" ></th><th><input type="text" size="3" value="ü" ></th></tr>
-                  <tr><td></td><td><input type="text" size="3" value="1,x,->" ></td><td><input type="text" size="3" value="nem" ></td><td><input type="text" size="3" value="igen" ></td><td><input type="text" size="3" value="nem" ></td></tr>
-                  <tr><td></td><td><input type="text" size="3" value="1,a,->" ></td><td><input type="text" size="3" value="1,b,->" ></td><td><input type="text" size="3" value="2,x,<-" ></td><td><input type="text" size="3" value="2,ü,<-" ></td></tr>
-                  <tr><td></td><td><input type="text" size="3" value="nem" ></td><td><input type="text" size="3" value="3,x,<-" ></td><td><input type="text" size="3" value="nem" ></td><td><input type="text" size="3" value="nem" ></td></tr>
-                  <tr><td></td><td><input type="text" size="3" value="3,a,<-" ></td><td><input type="text" size="3" value="3,b,<-" ></td><td><input type="text" size="3" value="0,x,->" ></td><td><input type="text" size="3" value="nem" ></td></tr>
-                </table>
-              
-                <!--
+      <form action="">
+        <label for="tape"> Input megadása:</label>
+        <input type="text" id="tape" size="20" name="tape"><a id="tapeaddv"> tipp</a> <br>
+        <label for="tape"> kezdő állapot</label>
+        <input type="text" id="first" size="5" name="tape"><a id="firstaddv"> tipp</a> <br>
+        <label for="tape"> végső állapot</label>
+        <input type="text" id="last" size="5" name="tape"><a id="lastaddv"> tipp</a> <br>
+        <label for="tape"> eredmény</label>
+        <input type="text" id="final" size="5" name="tape"><a id="finaladdv"> tipp</a> <br>
+        <input type="submit" id="loadmachine" value="Tölts be a gépet">
+      </form>
+    </div>
+
+
+    <div class="well" >
+        <h2>Gráf</h2>
+        <div id="graph" style="display: none">
+         <canvas id="myCanvas" width="600" height="600" style="border:1px solid #0e0a0a;"></canvas>
+        </div>
+    </div>
+
+
+    <div class="well">
+      <h2>Az automata konfigurálása</h2>
+
+      <label for="files">Jölöld ki a fenti JSON fájlok közül a megfelelőt</label>
+
+      <button id="choose_file">Fájl beolvasása</button><br><br>
+
+      <div class="newTable" id="newTable">
+        <form id="formTextArea">
+          <div id="textDiv"></div>
+
+        </form>
+        <div id="jsonarea" contentEditable="true"></div>
+
+        <button type="button" id="downloadfile">Mentés fájlba</button>
+
+      </div>
+
+      <div id="hidableTable" style="display: block">
+
+        <label for="c"> Új gép szerkesztése:</label>
+
+
+        <button id="c" data-tableID="first">Új oszlop hozzáadása</button>
+        Ábécé új elfogadó betűje: <input type="text" id="addcolumn" size="5" name="asd"> <br>
+
+        <button id="r" data-tableID="first">Új sor hozzáadása</button>
+
+        <table data-canexpand="true" data-hasrownumbers="true" id="theTable" class="table table-striped">
+          <tr>
+            <th>δ</th>
+            <th><input type="text" size="3" value="a"></th>
+            <th><input type="text" size="3" value="b"></th>
+            <th><input type="text" size="3" value="x"></th>
+            <th><input type="text" size="3" value="ü"></th>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" size="3" value="1,x,->"></td>
+            <td><input type="text" size="3" value="nem"></td>
+            <td><input type="text" size="3" value="igen"></td>
+            <td><input type="text" size="3" value="nem"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" size="3" value="1,a,->"></td>
+            <td><input type="text" size="3" value="1,b,->"></td>
+            <td><input type="text" size="3" value="2,x,<-"></td>
+            <td><input type="text" size="3" value="2,ü,<-"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" size="3" value="nem"></td>
+            <td><input type="text" size="3" value="3,x,<-"></td>
+            <td><input type="text" size="3" value="nem"></td>
+            <td><input type="text" size="3" value="nem"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" size="3" value="3,a,<-"></td>
+            <td><input type="text" size="3" value="3,b,<-"></td>
+            <td><input type="text" size="3" value="0,x,->"></td>
+            <td><input type="text" size="3" value="nem"></td>
+          </tr>
+        </table>
+        <table>
+          <tbody id="tbody"></tbody>
+        </table>
+        <!--
             contacts.set('0', { a: "1,x,->", b: "nem", x: "igen", ü: "nem" })
             contacts.set('1', { a: "1,a,->", b: "1,b,->", x: "2,x,<-", ü: "2,ü,<-" })
             contacts.set('2', { a: "nem", b: "3,x,<-", x: "nem", ü: "nem" })
             contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
             -->
-                  <button id="submitTable"  >Automata betöltés</button>
-                  
-                 
+        <button id="submitTable">Automata betöltés</button>
 
-                  <p id="status"></p>
-     </div>
+
+
+        <p id="status"></p>
+      </div>
     </div>
-    
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="src/js.js"></script>
-<script type="text/javascript" src="src/graph.js"></script>
-<script type="text/javascript" src="src/turingjs.js"></script>
-<script type="text/javascript" src="src/turing.js"></script>
-<script type="text/javascript" src="src/jquery.js"></script>
-<script type="text/javascript" src="src/machines.js"></script>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-</div>
-  </body>
+    <script type="text/javascript" src="src/control.js"></script>
+    <script type="text/javascript" src="src/table.js"></script>
+    <script type="text/javascript" src="src/graph.js"></script>
+    <script type="text/javascript" src="src/turingjs.js"></script>
+    <script type="text/javascript" src="src/turing.js"></script>
+    <script type="text/javascript" src="src/jquery.js"></script>
+    <script type="text/javascript" src="src/machines.js"></script>
+
+
+
+  </div>
+</body>
+
 </html>
