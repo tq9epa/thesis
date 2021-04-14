@@ -1,34 +1,24 @@
 
 $(async function () {
 
-	
-    //var e = document.getElementById("machines")
-    option = "2"
-    //console.log(machines(option))
+	if(localStorage.getItem("jsonSelect") != null){
+		console.log(localStorage.getItem("jsonSelect"))
+		toLoadMachine = await fetchToServer("appendToDiv",localStorage.getItem("jsonSelect"))
 			
-			try {
-				if(document.getElementById("jsonSelect").value != ""){
-					toLoadMachine = await fetchToServer("appendToDiv",document.getElementById("jsonSelect").value)
-					console.log("asd")
-				}
-				toLoadMachine = JSON.parse(toLoadMachine)	
-				var turing = new Turing(toLoadMachine, document.getElementById("first").value, document.getElementById("last").value);
-				console.log("try")
-				if (err) throw err;
+		toLoadMachine = JSON.parse(toLoadMachine)
 
-				turing.tape = document.getElementById("tape").value
-				turing.calc = document.getElementById("final").value
-				turing.reset();
-				
-			} catch (err) {
-				var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
-				console.log("catch")
-
-				turing.tape = ['r', 'o', 's', 's', 'z', ' ', 'b','e', 'm', 'e', 'n', 'e', 't']
-				turing.calc = "error";
-				turing.reset();
-			}
-    //var turing = new Turing(machines(option), mapGetter().get(option+"from"), mapGetter().get(option+"to"));
+		var turing = new Turing(toLoadMachine, localStorage.getItem("first"), localStorage.getItem("last"));
+		
+		turing.tape = localStorage.getItem("tape").split(",")
+		turing.calc = localStorage.getItem("final")
+		turing.reset();
+	}
+	else{
+		var turing = new Turing("", "", "");
+		turing.tape = ['n','i', 'n','cs', ' ', 'a', 'd','a','t',]
+		turing.reset();
+	}
+			 
     
 
     $('#run').click(function () {
@@ -49,7 +39,7 @@ $(async function () {
 				r = document.getElementById("jsonSelect").value
 				
   				if(r.includes("example1")){
-                var calc = prompt('Adj meg egy imput szalagot (e.g. 4!):');
+                
 				if (calc) {
 					var match = calc.match(/([0-9]+)(!)/i);
 					if (match) {
@@ -76,7 +66,7 @@ $(async function () {
 				}
 			}
             if(r.includes("example2")){
-                var calc = prompt('Adj meg egy imput szalagot (e.g. 4!):');
+                
 				if (calc) {
 					var match = calc.match(/([0-9]+)(!)/i);
 					if (match) {
@@ -103,7 +93,7 @@ $(async function () {
 			}
 
 			if(r.includes("example3")){
-                var calc = prompt('Adj meg egy imput szalagot(e.g. 3 * 2):');
+                
 				if (calc) {
 					var match = calc.match(/([0-9]+)[ ]*\*[ ]*([0-9]+)/i);
 					if (match) {
