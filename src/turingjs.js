@@ -1,8 +1,10 @@
 
 $(async function () {
 
-	if(localStorage.getItem("jsonSelect") != null){
-		console.log(localStorage.getItem("jsonSelect"))
+	try {
+		if(localStorage.getItem("jsonSelect") != null){
+		
+		
 		toLoadMachine = await fetchToServer("appendToDiv",localStorage.getItem("jsonSelect"))
 			
 		toLoadMachine = JSON.parse(toLoadMachine)
@@ -13,11 +15,18 @@ $(async function () {
 		turing.calc = localStorage.getItem("final")
 		turing.reset();
 	}
-	else{
+	else{var turing = new Turing("", "", "");
+	turing.tape = ['n','i', 'n','cs', ' ', 'a', 'd','a','t',]
+	turing.reset();
+		
+	}
+		
+	} catch (error) {
 		var turing = new Turing("", "", "");
 		turing.tape = ['n','i', 'n','cs', ' ', 'a', 'd','a','t',]
 		turing.reset();
 	}
+	
 			 
     
 

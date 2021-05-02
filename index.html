@@ -79,7 +79,7 @@ TODO
       <button id="listupdate">Lista frissítésése</button><br>
 
       <form action="">
-        <label for="tape"> Input megadása:</label>
+        <label for="tape"> Input szalag megadása:</label>
         <input type="text" id="tape" size="20" name="tape"><a id="tapeaddv"> tipp</a> <br>
         <label for="tape"> kezdő állapot</label>
         <input type="text" id="first" size="5" name="tape"><a id="firstaddv"> tipp</a> <br>
@@ -103,9 +103,9 @@ TODO
     <div class="well">
       <h2>Az automata konfigurálása</h2>
 
-      <label for="files">Jölöld ki a fenti JSON fájlok közül a megfelelőt</label>
+      <label for="files">Jölöld ki a fenti txt fájlok közül a megfelelőt</label>
 
-      <button id="choose_file">Fájl beolvasása</button><br><br>
+      <button id="choose_file">Fájl beolvasás szerkesztéshez</button><br><br>
 
       <div class="newTable" id="newTable">
         <form id="formTextArea">
@@ -127,7 +127,7 @@ TODO
         Ábécé új elfogadó betűje: <input type="text" id="addcolumn" size="5" name="asd"> <br>
 
         <button id="r" data-tableID="first">Új sor hozzáadása</button>
-
+<!--
         <table data-canexpand="true" data-hasrownumbers="true" id="theTable" class="table table-striped">
           <tr>
             <th>δ</th>
@@ -165,21 +165,27 @@ TODO
             <td><input type="text" size="3" value="nem"></td>
           </tr>
         </table>
-        <table>
-          <tbody id="tbody"></tbody>
-        </table>
+ -->
+ <table data-canexpand="true" data-hasrownumbers="true" id="theTable" class="table table-striped"></table>
+
+        
+        
         <!--
             contacts.set('0', { a: "1,x,->", b: "nem", x: "igen", ü: "nem" })
             contacts.set('1', { a: "1,a,->", b: "1,b,->", x: "2,x,<-", ü: "2,ü,<-" })
             contacts.set('2', { a: "nem", b: "3,x,<-", x: "nem", ü: "nem" })
             contacts.set('3', { a: "3,a,<-", b: "3,b,<-", x: "0,x,->", ü: "nem" })
+
             -->
-        <button id="submitTable">Automata betöltés</button>
 
-
-
-        <p id="status"></p>
+        <button id="submitTable">Tábla megjelenítés</button>
+        <button id="toGraph">Gráf rajzolás</button>
+        <button id="tabletofile">Tábla mentés fájlba</button>
+        
+       
       </div>
+      
+     
     </div>
 
 

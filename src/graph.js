@@ -334,7 +334,13 @@ function contactTo(from, to) {
 }
 
 
-function MainDraw(qAmount) {
+document.getElementById('toGraph').addEventListener('click', async e => { 
+
+    
+  fromTableToObject()
+  
+  document.getElementById("graph").style.display = "block";
+  
 var contacts = new Map(finalMapGetter())
 
 for(var t=1;t<qAmount;t++){
@@ -383,4 +389,4 @@ for (let i = 0; i < 4; i++) {
 
 
 }
-}
+})

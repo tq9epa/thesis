@@ -1,8 +1,5 @@
-var myForm = document.getElementById('formAjax');
-var myFile = document.getElementById('fileAjax');  
-var statusP = document.getElementById('status');
 
-let finalMap = new Map()
+window.onload = updateFileList
 
 
 document.getElementById('choose_file').addEventListener('click',appendToDiv); 
@@ -21,13 +18,6 @@ function saveForm(){
   localStorage.setItem("last",document.getElementById("last").value)
   localStorage.setItem("final",document.getElementById("final").value )
   localStorage.setItem("jsonSelect",document.getElementById("jsonSelect").value)
-
-  
- /*onsole.log(localStorage.getItem("tape"))
- console.log(localStorage.getItem("first"))
- console.log(localStorage.getItem("last"))
- console.log(localStorage.getItem("final"))
- console.log(localStorage.getItem("jsonSelect"))*/
 
 }
 
@@ -62,7 +52,7 @@ async function appendToDiv(){
   fromphp = await fetchToServer("appendToDiv",r)
   $("#jsonarea").empty();
   document.getElementById('jsonarea').append(fromphp)
-  console.log(fromphp.substring(0,10))
+  
     
 }
 
