@@ -2,10 +2,10 @@
 $(async function () {
 
 	try {
-		if(localStorage.getItem("jsonSelect") != null){
+		if(localStorage.getItem("fileSelect") != null){
 		
 		
-		toLoadMachine = await fetchToServer("appendToDiv",localStorage.getItem("jsonSelect"))
+		toLoadMachine = await fetchToServer("appendToDiv",localStorage.getItem("fileSelect"))
 			
 		toLoadMachine = JSON.parse(toLoadMachine)
 
@@ -45,9 +45,10 @@ $(async function () {
     $('#calc').click(function () {
         
         
-				r = document.getElementById("jsonSelect").value
-				
-  				if(r.includes("example1")){
+				r = document.getElementById("modeSelector").value
+				console.log(r)
+
+  				if(r == "index2" ){
                 
 				if (calc) {
 					var match = calc.match(/([0-9]+)(!)/i);
@@ -74,7 +75,7 @@ $(async function () {
 					}
 				}
 			}
-            if(r.includes("example2")){
+            if(r == "factorial"){
                 
 				if (calc) {
 					var match = calc.match(/([0-9]+)(!)/i);
@@ -101,7 +102,7 @@ $(async function () {
 				}
 			}
 
-			if(r.includes("example3")){
+			if(r == "index"){
                 
 				if (calc) {
 					var match = calc.match(/([0-9]+)[ ]*\*[ ]*([0-9]+)/i);

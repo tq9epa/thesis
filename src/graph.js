@@ -3,6 +3,7 @@ var canvas = document.getElementById("myCanvas");
 var contactsPos = new Map;
 
 function drawQs(name, x, y) {
+   
     var ctx = canvas.getContext("2d");
     ctx.font = "20px Arial";
     ctx.fillText(name, x, y);
@@ -138,231 +139,84 @@ function contactDescribe(from, to,contacts) {
     
     }
 }
+function fillText(properties, from, to){
+    var textBox = canvas.getContext("2d");
+    textBox.font = "15px Arial";
 
-function contactTo(from, to) {
+    textBox.fillText(properties,contactsPos.get(from).x+30,contactsPos.get(to).y-30)
+}
+
+
+function drawLine(from,to){
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
-    if (from == 'q0') {
-        if (to == 'q0') {
-            
-            ctx.moveTo(contactsPos.get('q0').x, contactsPos.get('q0').y - 22);
-            ctx.lineTo(contactsPos.get('q0').x - 10, contactsPos.get('q0').y - 40);
-            ctx.lineTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 40);
-            ctx.lineTo(contactsPos.get('q0').x + 20, contactsPos.get('q0').y - 22);
-            ctx.lineTo(contactsPos.get('q0').x + 17, contactsPos.get('q0').y - 30);
-            ctx.lineTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 25);
-            ctx.lineTo(contactsPos.get('q0').x + 20, contactsPos.get('q0').y - 22);
-        }
-        if (to == 'q1') {
-            
-            ctx.moveTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 5);
-            ctx.lineTo(contactsPos.get('q1').x - 10, contactsPos.get('q1').y - 5);
-            ctx.lineTo(contactsPos.get('q1').x - 20, contactsPos.get('q1').y - 15);
-            ctx.lineTo(contactsPos.get('q1').x - 20, contactsPos.get('q1').y + 5);
-            ctx.lineTo(contactsPos.get('q1').x - 10, contactsPos.get('q1').y - 5);
-        }
-        if (to == 'q2') {
-            ctx.moveTo(contactsPos.get('q0').x + 10, contactsPos.get('q0').y + 15);
-            ctx.lineTo(contactsPos.get('q2').x + 10, contactsPos.get('q2').y - 25);
-            ctx.lineTo(contactsPos.get('q2').x, contactsPos.get('q2').y - 35);
-            ctx.lineTo(contactsPos.get('q2').x + 20, contactsPos.get('q2').y - 35);
-            ctx.lineTo(contactsPos.get('q2').x + 10, contactsPos.get('q2').y - 25);
-        }
-        if (to == 'q3') {
-            ctx.moveTo(contactsPos.get('q0').x + 25, contactsPos.get('q0').y + 10);
-            ctx.lineTo(contactsPos.get('q3').x - 5, contactsPos.get('q3').y - 20);
-            ctx.lineTo(contactsPos.get('q3').x - 20, contactsPos.get('q3').y - 20);
-            ctx.lineTo(contactsPos.get('q3').x - 10, contactsPos.get('q3').y - 35);
-            ctx.lineTo(contactsPos.get('q3').x - 5, contactsPos.get('q3').y - 20);
-        }
-        if (to == 'qi') {
-            ctx.moveTo(contactsPos.get('q0').x , contactsPos.get('q0').y + 14);
-            ctx.lineTo(contactsPos.get('qi').x + 15, contactsPos.get('qi').y - 25);
-            ctx.lineTo(contactsPos.get('qi').x + 10, contactsPos.get('qi').y - 35);
-            ctx.lineTo(contactsPos.get('qi').x + 28, contactsPos.get('qi').y - 30);
-            ctx.lineTo(contactsPos.get('qi').x + 15, contactsPos.get('qi').y - 25);
-        }
-        if (to == 'qn') {
-            ctx.moveTo(contactsPos.get('q0').x + 25, contactsPos.get('q0').y + 10);
-            ctx.lineTo(contactsPos.get('qn').x - 5, contactsPos.get('qn').y - 20);
-            ctx.lineTo(contactsPos.get('qn').x - 20, contactsPos.get('qn').y - 15);
-            ctx.lineTo(contactsPos.get('qn').x - 10, contactsPos.get('qn').y - 33);
-            ctx.lineTo(contactsPos.get('qn').x - 5, contactsPos.get('qn').y - 20);
-        }
-    }
-    if (from == 'q1') {
-        if (to == 'q0') {
-            ctx.lineTo(contactsPos.get('q1').x - 10, contactsPos.get('q1').y - 5);
-            ctx.lineTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 5);
-            ctx.lineTo(contactsPos.get('q0').x + 40, contactsPos.get('q0').y - 15);
-            ctx.lineTo(contactsPos.get('q0').x + 40, contactsPos.get('q0').y + 5);
-            ctx.lineTo(contactsPos.get('q0').x + 30, contactsPos.get('q0').y - 5);
-        }
-        if (to == 'q1') {
-            ctx.moveTo(contactsPos.get('q1').x, contactsPos.get('q1').y - 22);
-            ctx.lineTo(contactsPos.get('q1').x - 10, contactsPos.get('q1').y - 40);
-            ctx.lineTo(contactsPos.get('q1').x + 30, contactsPos.get('q1').y - 40);
-            ctx.lineTo(contactsPos.get('q1').x + 20, contactsPos.get('q1').y - 22);
-            ctx.lineTo(contactsPos.get('q1').x + 17, contactsPos.get('q1').y - 30);
-            ctx.lineTo(contactsPos.get('q1').x + 30, contactsPos.get('q1').y - 25);
-            ctx.lineTo(contactsPos.get('q1').x + 20, contactsPos.get('q1').y - 22);
-        }
-        if (to == 'q2') {
-            ctx.moveTo(contactsPos.get('q1').x - 5, contactsPos.get('q1').y + 10);
-            ctx.lineTo(contactsPos.get('q2').x + 25, contactsPos.get('q2').y - 20);
-            ctx.lineTo(contactsPos.get('q2').x + 25, contactsPos.get('q2').y - 35);
-            ctx.lineTo(contactsPos.get('q2').x + 40, contactsPos.get('q2').y - 20);
-            ctx.lineTo(contactsPos.get('q2').x + 25, contactsPos.get('q2').y - 20);
-        }
-        if (to == 'q3') {
-            ctx.moveTo(contactsPos.get('q1').x + 10, contactsPos.get('q1').y + 15);
-            ctx.lineTo(contactsPos.get('q3').x + 10, contactsPos.get('q3').y - 25);
-            ctx.lineTo(contactsPos.get('q3').x, contactsPos.get('q3').y - 35);
-            ctx.lineTo(contactsPos.get('q3').x + 20, contactsPos.get('q3').y - 35);
-            ctx.lineTo(contactsPos.get('q3').x + 10, contactsPos.get('q3').y - 25);
-        }
-        if (to == 'qi') {
-            ctx.moveTo(contactsPos.get('q1').x - 5, contactsPos.get('q1').y + 10);
-            ctx.lineTo(contactsPos.get('qi').x + 28, contactsPos.get('qi').y - 15);
-            ctx.lineTo(contactsPos.get('qi').x + 33, contactsPos.get('qi').y - 30);
-            ctx.lineTo(contactsPos.get('qi').x + 43, contactsPos.get('qi').y - 10);
-            ctx.lineTo(contactsPos.get('qi').x + 28, contactsPos.get('qi').y - 15);
-        }
-        if (to == 'qn') {
-            ctx.moveTo(contactsPos.get('q1').x + 25, contactsPos.get('q1').y + 10);
-            ctx.lineTo(contactsPos.get('qn').x + 5, contactsPos.get('qn').y - 25);
-            ctx.lineTo(contactsPos.get('qn').x + 15, contactsPos.get('qn').y - 40);
-            ctx.lineTo(contactsPos.get('qn').x - 10, contactsPos.get('qn').y - 30);
-            ctx.lineTo(contactsPos.get('qn').x + 5, contactsPos.get('qn').y - 25);
-        }
-    }
-    if (from == 'q2') {
-        if (to == 'q0') {
-            ctx.moveTo(contactsPos.get('q2').x + 10, contactsPos.get('q2').y - 25);
-            ctx.lineTo(contactsPos.get('q0').x + 10, contactsPos.get('q0').y + 15);
-            ctx.lineTo(contactsPos.get('q0').x, contactsPos.get('q0').y + 25);
-            ctx.lineTo(contactsPos.get('q0').x + 20, contactsPos.get('q0').y + 25);
-            ctx.lineTo(contactsPos.get('q0').x + 10, contactsPos.get('q0').y + 15);
-        }
-        if (to == 'q1') {
-            ctx.moveTo(contactsPos.get('q2').x + 25, contactsPos.get('q2').y - 20);
-            ctx.lineTo(contactsPos.get('q1').x - 5, contactsPos.get('q1').y + 10);
-            ctx.lineTo(contactsPos.get('q1').x - 20, contactsPos.get('q1').y + 10);
-            ctx.lineTo(contactsPos.get('q1').x - 5, contactsPos.get('q1').y + 25);
-            ctx.lineTo(contactsPos.get('q1').x - 5, contactsPos.get('q1').y + 10);
-        }
-        if (to == 'q2') {
-            ctx.moveTo(contactsPos.get('q2').x, contactsPos.get('q2').y + 12);
-            ctx.lineTo(contactsPos.get('q2').x - 10, contactsPos.get('q2').y + 30);
-            ctx.lineTo(contactsPos.get('q2').x + 30, contactsPos.get('q2').y + 30);
-            ctx.lineTo(contactsPos.get('q2').x + 20, contactsPos.get('q2').y + 12);
-            ctx.lineTo(contactsPos.get('q2').x + 17, contactsPos.get('q2').y + 20);
-            ctx.lineTo(contactsPos.get('q2').x + 30, contactsPos.get('q2').y + 15);
-            ctx.lineTo(contactsPos.get('q2').x + 20, contactsPos.get('q2').y + 12);
-        }
-        if (to == 'q3') {
-            ctx.moveTo(contactsPos.get('q2').x + 30, contactsPos.get('q2').y - 5);
-            ctx.lineTo(contactsPos.get('q3').x - 10, contactsPos.get('q3').y - 5);
-            ctx.lineTo(contactsPos.get('q3').x - 20, contactsPos.get('q3').y - 15);
-            ctx.lineTo(contactsPos.get('q3').x - 20, contactsPos.get('q3').y + 5);
-            ctx.lineTo(contactsPos.get('q3').x - 10, contactsPos.get('q3').y - 5);
-        }
-        if (to == 'qi') {
-            ctx.moveTo(contactsPos.get('q2').x , contactsPos.get('q2').y - 24);
-            ctx.lineTo(contactsPos.get('qi').x + 15, contactsPos.get('qi').y + 15);
-            ctx.lineTo(contactsPos.get('qi').x + 10, contactsPos.get('qi').y + 25);
-            ctx.lineTo(contactsPos.get('qi').x + 28, contactsPos.get('qi').y + 20);
-            ctx.lineTo(contactsPos.get('qi').x + 15, contactsPos.get('qi').y + 15);
-        }
-        if (to == 'qn') {
-            ctx.moveTo(contactsPos.get('q2').x + 27, contactsPos.get('q2').y - 15);
-            ctx.lineTo(contactsPos.get('qn').x - 5, contactsPos.get('qn').y + 10);
-            ctx.lineTo(contactsPos.get('qn').x - 20, contactsPos.get('qn').y + 5);
-            ctx.lineTo(contactsPos.get('qn').x - 10, contactsPos.get('qn').y + 23);
-            ctx.lineTo(contactsPos.get('qn').x - 5, contactsPos.get('qn').y + 10);
-        }
-    }
-    if (from == 'q3') {
-        var ctx = canvas.getContext("2d");
-        ctx.beginPath();
-        if (to == 'q0') {
-            ctx.moveTo(contactsPos.get('q3').x - 5, contactsPos.get('q3').y - 20);
-            ctx.lineTo(contactsPos.get('q0').x + 25, contactsPos.get('q0').y + 10);
-            ctx.lineTo(contactsPos.get('q0').x + 25, contactsPos.get('q0').y + 25);
-            ctx.lineTo(contactsPos.get('q0').x + 40, contactsPos.get('q0').y + 10);
-            ctx.lineTo(contactsPos.get('q0').x + 25, contactsPos.get('q0').y + 10);
-        }
-        if (to == 'q1') {
-            ctx.moveTo(contactsPos.get('q3').x + 10, contactsPos.get('q3').y - 25);
-            ctx.lineTo(contactsPos.get('q1').x + 10, contactsPos.get('q1').y + 15);
-            ctx.lineTo(contactsPos.get('q1').x, contactsPos.get('q1').y + 25);
-            ctx.lineTo(contactsPos.get('q1').x + 20, contactsPos.get('q1').y + 25);
-            ctx.lineTo(contactsPos.get('q1').x + 10, contactsPos.get('q1').y + 15);
-        }
-        if (to == 'q2') {
-            ctx.lineTo(contactsPos.get('q3').x - 10, contactsPos.get('q3').y - 5);
-            ctx.lineTo(contactsPos.get('q2').x + 30, contactsPos.get('q2').y - 5);
-            ctx.lineTo(contactsPos.get('q2').x + 40, contactsPos.get('q2').y - 15);
-            ctx.lineTo(contactsPos.get('q2').x + 40, contactsPos.get('q2').y + 5);
-            ctx.lineTo(contactsPos.get('q2').x + 30, contactsPos.get('q2').y - 5);
-        }
-        if (to == 'q3') {
-            ctx.moveTo(contactsPos.get('q3').x, contactsPos.get('q3').y + 12);
-            ctx.lineTo(contactsPos.get('q3').x - 10, contactsPos.get('q3').y + 30);
-            ctx.lineTo(contactsPos.get('q3').x + 30, contactsPos.get('q3').y + 30);
-            ctx.lineTo(contactsPos.get('q3').x + 20, contactsPos.get('q3').y + 12);
-            ctx.lineTo(contactsPos.get('q3').x + 17, contactsPos.get('q3').y + 20);
-            ctx.lineTo(contactsPos.get('q3').x + 30, contactsPos.get('q3').y + 15);
-            ctx.lineTo(contactsPos.get('q3').x + 20, contactsPos.get('q3').y + 12);
-        }
-        if (to == 'qi') {
-            ctx.moveTo(contactsPos.get('q3').x - 5, contactsPos.get('q3').y - 20);
-            ctx.lineTo(contactsPos.get('qi').x + 28, contactsPos.get('qi').y + 5);
-            ctx.lineTo(contactsPos.get('qi').x + 33, contactsPos.get('qi').y + 20);
-            ctx.lineTo(contactsPos.get('qi').x + 43, contactsPos.get('qi').y );
-            ctx.lineTo(contactsPos.get('qi').x + 28, contactsPos.get('qi').y + 5);
-        }
-        if (to == 'qn') {
-            ctx.moveTo(contactsPos.get('q3').x + 25, contactsPos.get('q3').y - 20);
-            ctx.lineTo(contactsPos.get('qn').x + 5, contactsPos.get('qn').y + 15);
-            ctx.lineTo(contactsPos.get('qn').x + 10, contactsPos.get('qn').y + 30);
-            ctx.lineTo(contactsPos.get('qn').x - 8, contactsPos.get('qn').y + 22);
-            ctx.lineTo(contactsPos.get('qn').x + 5, contactsPos.get('qn').y + 15);
-        }
-    }
+    ctx.moveTo(contactsPos.get(from).x, contactsPos.get(from).y - 22);
+
+    ctx.lineTo(contactsPos.get(to).x - 10, contactsPos.get(to).y - 40);
+    ctx.lineTo(contactsPos.get(to).x + 30, contactsPos.get(to).y - 40);
+    ctx.lineTo(contactsPos.get(to).x + 20, contactsPos.get(to).y - 22);
+    ctx.lineTo(contactsPos.get(to).x + 17, contactsPos.get(to).y - 30);
+    ctx.lineTo(contactsPos.get(to).x + 30, contactsPos.get(to).y - 25);
+    ctx.lineTo(contactsPos.get(to).x + 20, contactsPos.get(to).y - 22);
     ctx.stroke();
 }
 
 
+
+
 document.getElementById('toGraph').addEventListener('click', async e => { 
-
+    //moveableG()
+    console.log("asd")
+    document.getElementById("graph").style.display = "block";
     
-  fromTableToObject()
+    tableObj = fromTableToObject()
   
-  document.getElementById("graph").style.display = "block";
-  
-var contacts = new Map(finalMapGetter())
+    var contacts = tableObj
 
-for(var t=1;t<qAmount;t++){
-    if(t % 2){
-    contactsPos.set('q'+t, { x: 500, y: 80*t })
-    drawQs('q'+t, contactsPos.get('q'+t).x, contactsPos.get('q'+t).y);}
-    else{
-        contactsPos.set('q'+t, { x: 20, y: 80*t })
-        drawQs('q'+t, contactsPos.get('q'+t).x, contactsPos.get('q'+t).y);}
+    side = true
+    t=1
+    for(key in tableObj){
+        if(side){
+            if(contactsPos.has(key.split(":")[0]) == false){
+                contactsPos.set(key.split(":")[0], { x: 500, y: 80*t })
+                drawQs(key.split(":")[0], contactsPos.get(key.split(":")[0]).x, contactsPos.get(key.split(":")[0]).y)
+                side = false
+                t+=1
+            }}
+        else{
+            if(contactsPos.has(key.split(":")[0]) == false){
+                contactsPos.set(key.split(":")[0], { x: 20, y: 80*t })
+                drawQs(key.split(":")[0], contactsPos.get(key.split(":")[0]).x, contactsPos.get(key.split(":")[0]).y)
+                side = true
+                t+=1
+            }
+        }
+
+}
+console.log(contactsPos)
+
+properties = []
+for (var key in tableObj) {
+    if (tableObj.hasOwnProperty(key)) {
+      for (var key2 in tableObj[key]) {
+        if (tableObj[key].hasOwnProperty(key2)) {
+          properties.push(tableObj[key][key2]);
+        }
+      }
+      console.log(key.split(":")[0]," : ",properties[0])
+      if(contactsPos.has(properties[0])==false){
+        contactsPos.set(properties[0], { x: 20, y: 80*contactsPos.size })
+        drawQs(properties[0], contactsPos.get(properties[0]).x, contactsPos.get(properties[0]).y)
     }
+      drawLine(key.split(":")[0],properties[0])
+      fillText(properties,key.split(":")[0],properties[0])
+      properties = [];
+    }
+}
 
+})
 
-contactsPos.set('q0', { x: 200, y: 50 })
-contactsPos.set('qi', { x: 400, y: 300 })
-contactsPos.set('qn', { x: 300, y: 500 })
-
-drawQs('q0', contactsPos.get('q0').x, contactsPos.get('q0').y);
-drawQs('qi', contactsPos.get('qi').x, contactsPos.get('qi').y);
-drawQs('qn', contactsPos.get('qn').x, contactsPos.get('qn').y);
-
-
-
+/*
 for (let i = 0; i < 4; i++) {
     
     
@@ -389,4 +243,126 @@ for (let i = 0; i < 4; i++) {
 
 
 }
-})
+*/
+
+function moveableG(){
+var canvas = document.getElementById('myCanvas'),
+ctx = canvas.getContext('2d'),
+rect = {},
+drag = false,
+mouseX,
+mouseY,
+closeEnough = 10,
+dragTL = dragBL = dragTR = dragBR = false;
+
+function init() {
+canvas.addEventListener('mousedown', mouseDown, false);
+canvas.addEventListener('mouseup', mouseUp, false);
+canvas.addEventListener('mousemove', mouseMove, false);
+
+rect = {
+    startX: 100,
+    startY: 200,
+    w: 300,
+    h: 200
+}
+}
+
+function mouseDown(e) {
+mouseX = e.pageX - this.offsetLeft;
+mouseY = e.pageY - this.offsetTop;
+
+// if there isn't a rect yet
+if (rect.w === undefined) {
+    rect.startX = mouseY;
+    rect.startY = mouseX;
+    dragBR = true;
+}
+
+// if there is, check which corner
+//   (if any) was clicked
+//
+// 4 cases:
+// 1. top left
+else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY)) {
+    dragTL = true;
+}
+// 2. top right
+else if (checkCloseEnough(mouseX, rect.startX + rect.w) && checkCloseEnough(mouseY, rect.startY)) {
+    dragTR = true;
+
+}
+// 3. bottom left
+else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY + rect.h)) {
+    dragBL = true;
+
+}
+// 4. bottom right
+else if (checkCloseEnough(mouseX, rect.startX + rect.w) && checkCloseEnough(mouseY, rect.startY + rect.h)) {
+    dragBR = true;
+
+}
+// (5.) none of them
+else {
+    // handle not resizing
+}
+
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+draw();
+
+}
+
+function checkCloseEnough(p1, p2) {
+return Math.abs(p1 - p2) < closeEnough;
+}
+
+function mouseUp() {
+dragTL = dragTR = dragBL = dragBR = false;
+}
+
+function mouseMove(e) {
+mouseX = e.pageX - this.offsetLeft;
+mouseY = e.pageY - this.offsetTop;
+if (dragTL) {
+    rect.w += rect.startX - mouseX;
+    rect.h += rect.startY - mouseY;
+    rect.startX = mouseX;
+    rect.startY = mouseY;
+} else if (dragTR) {
+    rect.w = Math.abs(rect.startX - mouseX);
+    rect.h += rect.startY - mouseY;
+    rect.startY = mouseY;
+} else if (dragBL) {
+    rect.w += rect.startX - mouseX;
+    rect.h = Math.abs(rect.startY - mouseY);
+    rect.startX = mouseX;
+} else if (dragBR) {
+    rect.w = Math.abs(rect.startX - mouseX);
+    rect.h = Math.abs(rect.startY - mouseY);
+}
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+draw();
+}
+
+function draw() {
+ctx.fillStyle = "#FFFFFF";
+ctx.fillRect(rect.startX, rect.startY, rect.w, rect.h);
+drawHandles();
+}
+
+function drawCircle(x, y, radius) {
+ctx.fillStyle = "#FF0000";
+ctx.beginPath();
+ctx.arc(x, y, radius, 0, 2 * Math.PI);
+ctx.fill();
+}
+
+function drawHandles() {
+drawCircle(rect.startX, rect.startY, closeEnough);
+drawCircle(rect.startX + rect.w, rect.startY, closeEnough);
+drawCircle(rect.startX + rect.w, rect.startY + rect.h, closeEnough);
+drawCircle(rect.startX, rect.startY + rect.h, closeEnough);
+}
+
+init();
+}

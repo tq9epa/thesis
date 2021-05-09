@@ -17,7 +17,7 @@ Turing.prototype.run = function () {
 
 	if (this.stop) {
 
-		$('#run').val("Pause");
+		$('#run').val("Szünet");
 		$('#step').attr('disabled', 'disabled');
 		$('#reset').attr('disabled', 'disabled');
 
@@ -30,7 +30,7 @@ Turing.prototype.run = function () {
 
 		// Pause
 		this.stop = true;
-		$('#run').val("Pause…").attr('disabled', 'disabled');
+		$('#run').val("Szünet…").attr('disabled', 'disabled');
 	}
 };
 
@@ -54,7 +54,7 @@ Turing.prototype.reset = function () {
 	this.current = this.start;
 	this.count = 0;
 
-	$('#run').val("Run").attr('disabled', '');
+	$('#run').val("Indítás").attr('disabled', '');
 	$('#step').attr('disabled', '');
 	$('#calc').text(this.calc);
 
@@ -158,7 +158,7 @@ Turing.prototype.move = function (step) {
 	} else {
 
 		// stopped
-		$('#run').val("Run").attr('disabled', '');
+		$('#run').val("Indítás").attr('disabled', '');
 		$('#step').attr('disabled', '');
 		$('#reset').attr('disabled', '');	
 	}
@@ -188,7 +188,7 @@ Turing.prototype.check = function () {
 		// end of machine
 		this.stop = true;
 
-		$('#run').val("Run").attr('disabled', 'disabled');
+		$('#run').val("Indítás").attr('disabled', 'disabled');
 		$('#step').attr('disabled', 'disabled');
 		$('#reset').attr('disabled', '');
 	}

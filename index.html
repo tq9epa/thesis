@@ -1,10 +1,5 @@
-<!--
-TODO
-  terminálás előtt felesleges karakterek törlése
--->
-
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 
 <head>
   <meta charset="utf-8">
@@ -33,7 +28,7 @@ TODO
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Turing-gép szemléltető</a>
+        <a class="navbar-brand" href="index.html">Turing-gép szemléltető</a>
       </div>
     </div>
   </nav>
@@ -53,7 +48,7 @@ TODO
           <p>
             <input id="run" type="button" value="Indítás" />
             <input id="step" type="button" value="Következő" />
-            <input id="reset" type="button" value="Reset" />
+            <input id="reset" type="button" value="Visszaállít" />
           </p>
         </div>
         <div class="count">
@@ -68,6 +63,7 @@ TODO
           <h2>Eredmény</h2>
           <p id="calc"></p>
         </div>
+       
 
 
         <div id="canvas"></div>
@@ -75,18 +71,20 @@ TODO
       <label for="machines"> Választás a fájlokba mentett gépek közül:</label><br>
 
 
-      <select id="jsonSelect"></select>
+      <select id="fileSelect"></select>
       <button id="listupdate">Lista frissítésése</button><br>
 
       <form action="">
         <label for="tape"> Input szalag megadása:</label>
-        <input type="text" id="tape" size="20" name="tape"><a id="tapeaddv"> tipp</a> <br>
-        <label for="tape"> kezdő állapot</label>
-        <input type="text" id="first" size="5" name="tape"><a id="firstaddv"> tipp</a> <br>
-        <label for="tape"> végső állapot</label>
-        <input type="text" id="last" size="5" name="tape"><a id="lastaddv"> tipp</a> <br>
-        <label for="tape"> eredmény</label>
-        <input type="text" id="final" size="5" name="tape"><a id="finaladdv"> tipp</a> <br>
+        <input type="text" id="tape" size="20" name="tape" required><a id="tapeaddv"> tipp</a> <br>
+        <label for="tape"> Kezdő állapot</label>
+        <input type="text" id="first" size="5" name="tape"required><a id="firstaddv" > tipp</a> <br>
+        <label for="tape"> Végső állapot</label>
+        <input type="text" id="last" size="5" name="tape"required><a id="lastaddv" > tipp</a> <br>
+        <label for="tape"> Eredmény</label>
+        <input type="text" id="final" size="5" name="tape"required><a id="finaladdv"> tipp</a> <br>
+
+       
         <input type="submit" id="loadmachine" value="Tölts be a gépet">
       </form>
     </div>

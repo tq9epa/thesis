@@ -17,13 +17,13 @@ function saveForm(){
   localStorage.setItem("first",document.getElementById("first").value)
   localStorage.setItem("last",document.getElementById("last").value)
   localStorage.setItem("final",document.getElementById("final").value )
-  localStorage.setItem("jsonSelect",document.getElementById("jsonSelect").value)
+  localStorage.setItem("fileSelect",document.getElementById("fileSelect").value)
 
 }
 
 
 function tipp(){
-  r = document.getElementById("jsonSelect").value
+  r = document.getElementById("fileSelect").value
 
 
   if(r.includes("example1")){
@@ -48,7 +48,7 @@ if(r.includes("example3")){
 
 async function appendToDiv(){
   
-  r = document.getElementById("jsonSelect").value
+  r = document.getElementById("fileSelect").value
   fromphp = await fetchToServer("appendToDiv",r)
   $("#jsonarea").empty();
   document.getElementById('jsonarea').append(fromphp)
@@ -62,7 +62,7 @@ async function fetchToServer(header,data){
   var form = new FormData();
   form.append(header, data);
   asd = ""
-  //console.log(form.values().next().value) // return and obj contain JSON string
+  
   
   var data = await fetch('src/readfile.php', {
       method: 'POST',
@@ -75,16 +75,15 @@ async function fetchToServer(header,data){
    
     return body
   });
-  //console.log(data)
-  //await delay()
+  
   return data
 }
 
 function download() {
-  //var newFileName = prompt("Kérem, adja meg a menteni kívánt fájl nevét!");
+  
   asd = document.getElementById('jsonarea').innerHTML
   
-  //getOutput('?a=download&q='+newFileName+'&path='+ asd)
+  
      
   fetchToServer('savefile',asd)
       
@@ -94,7 +93,8 @@ async function updateFileList(){
 
   splitted = await fetchToServer("listnull","")
   splitted = splitted.split(" ")
-  var select = document.getElementById("jsonSelect"); 
+  document.getElementById("fileSelect").innerHTML = ""
+  var select = document.getElementById("fileSelect"); 
 
   for(var i = 0; i < splitted.length; i++) {
   var opt = splitted[i];
@@ -102,6 +102,9 @@ async function updateFileList(){
   el.textContent = opt;
   el.value = opt;
   select.appendChild(el);
-  
 }
+  var el = document.createElement("option");
+  el.textContent = "példa1.txt"
+  el.value = "példa1.txt"
+  select.appendChild(el)
 }

@@ -180,10 +180,14 @@ document.getElementById('tabletofile').addEventListener('click', async e => {
 
  document.getElementById('submitTable').addEventListener('click', async e => {
   
-  Obj = await fetchToServer("appendToDiv", document.getElementById("jsonSelect").value);
+  Obj = await fetchToServer("appendToDiv", document.getElementById("fileSelect").value);
 
   Obj = JSON.parse(Obj);
+
   console.log(Obj)
+  
+  document.getElementById("theTable").innerHTML = ""
+
   properties = [];
   tableMap = new Map();
 
@@ -269,8 +273,7 @@ function fromTableToObject(){
         
         keys = row[0].value+":"+header[j]
         values = { state: row[j].value.split(",")[0],value: row[j].value.split(",")[1],move: row[j].value.split(",")[2] }
-        console.log(keys," : ",values)
-        
+
         fromTableObj[keys] = values
       }
     }
