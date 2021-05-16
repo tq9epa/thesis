@@ -18,7 +18,7 @@
     if (isset($_POST) && !empty($_POST) ) {
 
         if(isset($_POST['savefile'])){
-      
+            
             $myfile = fopen(date("ymdhi").".txt", "w") or die("Unable to open file!");
             
             
@@ -41,6 +41,11 @@
 
             $shipments = file_get_contents($_POST['appendToDiv']);
             echo $shipments;
+        }
+        if(isset($_POST['deletefile'])){
+
+            echo "File delete was: ".unlink($_POST['deletefile']);
+        
         }
            exit;
     }

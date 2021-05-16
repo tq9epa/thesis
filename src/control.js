@@ -1,28 +1,22 @@
 
 window.onload = updateFileList
 
+document.getElementById('listupdate').addEventListener('click',updateFileList)
 
-document.getElementById('choose_file').addEventListener('click',appendToDiv); 
-document.getElementById('downloadfile').addEventListener('click',download ); 
-document.getElementById('listupdate').addEventListener('click',updateFileList); 
+document.getElementById('loadmachine').addEventListener('click', e => {
 
-document.getElementById('tapeaddv').addEventListener('click',tipp); 
-document.getElementById('firstaddv').addEventListener('click',tipp); 
-document.getElementById('lastaddv').addEventListener('click',tipp); 
-document.getElementById('finaladdv').addEventListener('click',tipp);
-document.getElementById('loadmachine').addEventListener('click',saveForm);
-
-function saveForm(){
   localStorage.setItem("tape",document.getElementById("tape").value)
   localStorage.setItem("first",document.getElementById("first").value)
   localStorage.setItem("last",document.getElementById("last").value)
   localStorage.setItem("final",document.getElementById("final").value )
   localStorage.setItem("fileSelect",document.getElementById("fileSelect").value)
 
-}
+})
 
 
-function tipp(){
+document.getElementById('tipp').addEventListener('click', e => {
+
+    console.log(e)
   r = document.getElementById("fileSelect").value
 
 
@@ -44,9 +38,10 @@ if(r.includes("example3")){
   document.getElementById("last").value = "s8";
   document.getElementById("final").value = "3 * 2 =";}
 
-}
+})
 
-async function appendToDiv(){
+//appendToDiv 
+document.getElementById('choose_file').addEventListener('click',async e => {
   
   r = document.getElementById("fileSelect").value
   fromphp = await fetchToServer("appendToDiv",r)
@@ -54,7 +49,7 @@ async function appendToDiv(){
   document.getElementById('jsonarea').append(fromphp)
   
     
-}
+})
 
 
 async function fetchToServer(header,data){
@@ -79,15 +74,13 @@ async function fetchToServer(header,data){
   return data
 }
 
-function download() {
-  
+document.getElementById('downloadfile').addEventListener('click',async e => {
+
   asd = document.getElementById('jsonarea').innerHTML
-  
-  
-     
-  fetchToServer('savefile',asd)
+  await fetchToServer('savefile',asd)
       
-}
+})
+
 
 async function updateFileList(){
 
@@ -97,14 +90,22 @@ async function updateFileList(){
   var select = document.getElementById("fileSelect"); 
 
   for(var i = 0; i < splitted.length; i++) {
-  var opt = splitted[i];
-  var el = document.createElement("option");
-  el.textContent = opt;
-  el.value = opt;
-  select.appendChild(el);
+    var opt = splitted[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.appendChild(el);
+  }
+ 
 }
-  var el = document.createElement("option");
-  el.textContent = "példa1.txt"
-  el.value = "példa1.txt"
-  select.appendChild(el)
-}
+
+document.getElementById('deleteFile').addEventListener('click',async e => {
+
+  r = document.getElementById("fileSelect").value
+  
+  if(r.includes("example")==false){
+  
+    fromphp = await fetchToServer("deletefile",r)
+    updateFileList()
+  }
+})

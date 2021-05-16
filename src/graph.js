@@ -2,6 +2,8 @@
 var canvas = document.getElementById("myCanvas");
 var contactsPos = new Map;
 
+
+
 function drawQs(name, x, y) {
    
     var ctx = canvas.getContext("2d");
@@ -161,17 +163,25 @@ function drawLine(from,to){
     ctx.stroke();
 }
 
+document.getElementById('toGraphFromFile').addEventListener('click',function(){makeGraph("toGraphFromFile")},false )
+
+document.getElementById('toGraph').addEventListener('click',function(){makeGraph("toGraph")},false )
 
 
+async function makeGraph(kindOf) { 
+    console.log(Event)
+    if(kindOf == "toGraphFromFile"){
+        console.log("toGraphFromFile")
+        document.getElementById("graph").style.display = "block";
+        r = document.getElementById("fileSelect").value
+        tableObj = await fetchToServer("appendToDiv",r)
 
-document.getElementById('toGraph').addEventListener('click', async e => { 
-    //moveableG()
-    console.log("asd")
-    document.getElementById("graph").style.display = "block";
+    } if(kindOf == "toGraph"){
+        console.log("toGraph")
+        document.getElementById("graph").style.display = "block";
     
-    tableObj = fromTableToObject()
-  
-    var contacts = tableObj
+        tableObj = fromTableToObject()
+    }
 
     side = true
     t=1
@@ -214,7 +224,7 @@ for (var key in tableObj) {
     }
 }
 
-})
+}
 
 /*
 for (let i = 0; i < 4; i++) {

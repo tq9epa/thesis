@@ -72,28 +72,31 @@
 
 
       <select id="fileSelect"></select>
-      <button id="listupdate">Lista frissítésése</button><br>
+      <button id="listupdate">Lista frissítésése</button>
+      <button id="deleteFile">Fájl törlése</button><br>
 
       <form action="">
         <label for="tape"> Input szalag megadása:</label>
-        <input type="text" id="tape" size="20" name="tape" required><a id="tapeaddv"> tipp</a> <br>
+        <input type="text" id="tape" size="20" name="tape" required><a id="tipp"> tipp</a> <br>
         <label for="tape"> Kezdő állapot</label>
-        <input type="text" id="first" size="5" name="tape"required><a id="firstaddv" > tipp</a> <br>
+        <input type="text" id="first" size="5" name="first"required><a id="tipp" > tipp</a> <br>
         <label for="tape"> Végső állapot</label>
-        <input type="text" id="last" size="5" name="tape"required><a id="lastaddv" > tipp</a> <br>
+        <input type="text" id="last" size="5" name="last"required><a id="tipp" > tipp</a> <br>
         <label for="tape"> Eredmény</label>
-        <input type="text" id="final" size="5" name="tape"required><a id="finaladdv"> tipp</a> <br>
+        <input type="text" id="final" size="5" name="final"required><a id="tipp"> tipp</a> <br>
 
        
-        <input type="submit" id="loadmachine" value="Tölts be a gépet">
+        <input type="submit" id="loadmachine" value="Tölts be a gépet" formtarget="_self">
       </form>
     </div>
 
 
     <div class="well" >
         <h2>Gráf</h2>
+        <input type="button" id="toGraphFromFile" class="Graph" value="Gráf rajzolás">
         <div id="graph" style="display: none">
          <canvas id="myCanvas" width="600" height="600" style="border:1px solid #0e0a0a;"></canvas>
+         
         </div>
     </div>
 
@@ -177,7 +180,7 @@
             -->
 
         <button id="submitTable">Tábla megjelenítés</button>
-        <button id="toGraph">Gráf rajzolás</button>
+        <input type="button" id="toGraph" class="Graph" value="Gráf rajzolás">
         <button id="tabletofile">Tábla mentés fájlba</button>
         
        
@@ -195,7 +198,6 @@
     <script type="text/javascript" src="src/turingjs.js"></script>
     <script type="text/javascript" src="src/turing.js"></script>
     <script type="text/javascript" src="src/jquery.js"></script>
-    <script type="text/javascript" src="src/machines.js"></script>
 
 
 
