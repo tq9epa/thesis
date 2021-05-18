@@ -19,7 +19,7 @@
 
         if(isset($_POST['savefile'])){
             
-            $myfile = fopen(date("ymdhi").".txt", "w") or die("Unable to open file!");
+            $myfile = fopen(getcwd()."/".date("ymdhi").".txt", "w") or die("Unable to open file!");
             
             
             fwrite($myfile, $_POST['savefile']);

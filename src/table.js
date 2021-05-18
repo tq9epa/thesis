@@ -184,7 +184,7 @@ document.getElementById('tabletofile').addEventListener('click', async e => {
 
   Obj = JSON.parse(Obj);
 
-  console.log(Obj)
+ 
   
   document.getElementById("theTable").innerHTML = ""
 
@@ -206,7 +206,7 @@ document.getElementById('tabletofile').addEventListener('click', async e => {
       properties = [];
     }
   }
-  console.log(tableMap);
+
 
   header = [];
   temp = "";
@@ -278,7 +278,7 @@ function fromTableToObject(){
       }
     }
   }
-  console.log(fromTableObj)
+ 
   return fromTableObj
 }
 
