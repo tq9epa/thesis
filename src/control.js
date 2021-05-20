@@ -3,6 +3,7 @@ window.onload = updateFileList
 
 document.getElementById('listupdate').addEventListener('click',updateFileList)
 
+//function saveform
 document.getElementById('loadmachine').addEventListener('click', e => {
 
   localStorage.setItem("tape",document.getElementById("tape").value)
@@ -13,10 +14,9 @@ document.getElementById('loadmachine').addEventListener('click', e => {
 
 })
 
-
+//function tipp
 document.getElementById('tipp').addEventListener('click', e => {
 
-    console.log(e)
   r = document.getElementById("fileSelect").value
 
 
@@ -51,7 +51,7 @@ document.getElementById('choose_file').addEventListener('click',async e => {
     
 })
 
-
+//function fetchToServer
 async function fetchToServer(header,data){
 
   var form = new FormData();
@@ -59,7 +59,7 @@ async function fetchToServer(header,data){
   asd = ""
   
   
-  var data = await fetch('src/readfile.php', {
+  var data = await fetch('src/server.php', {
       method: 'POST',
       body: form
   })
@@ -73,7 +73,7 @@ async function fetchToServer(header,data){
   
   return data
 }
-
+//function download
 document.getElementById('downloadfile').addEventListener('click',async e => {
 
   asd = document.getElementById('jsonarea').innerHTML
@@ -81,7 +81,7 @@ document.getElementById('downloadfile').addEventListener('click',async e => {
       
 })
 
-
+//function updateFileList
 async function updateFileList(){
 
   splitted = await fetchToServer("listnull","")
@@ -98,7 +98,7 @@ async function updateFileList(){
   }
  
 }
-
+// async function deletefile
 document.getElementById('deleteFile').addEventListener('click',async e => {
 
   r = document.getElementById("fileSelect").value

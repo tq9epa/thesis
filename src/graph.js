@@ -1,8 +1,4 @@
-
-
 var canvas = document.getElementById("myCanvas");
-
-var contactsPos = new Map;
 
 
 
@@ -76,14 +72,6 @@ function drawLine(from,to){
 
     }
 
- 
-
-    
-    /*ctx.lineTo(contactsPos.get(to).x + 30, contactsPos.get(to).y - 40);
-    ctx.lineTo(contactsPos.get(to).x + 20, contactsPos.get(to).y - 22);
-    ctx.lineTo(contactsPos.get(to).x + 17, contactsPos.get(to).y - 30);
-    ctx.lineTo(contactsPos.get(to).x + 30, contactsPos.get(to).y - 25);
-    ctx.lineTo(contactsPos.get(to).x + 20, contactsPos.get(to).y - 22);*/
     ctx.stroke();
     
 }

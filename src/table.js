@@ -1,7 +1,7 @@
 //https://stackoverflow.com/questions/25134998/how-to-give-a-unique-id-for-each-cell-when-adding-custom-columns
 
-$("button#c").on("click", addColumn); // add column handler
-$("button#r").on("click", addRow); // add row handler
+$("button#c").on("click", addColumn); 
+$("button#r").on("click", addRow); 
 $("table[data-canexpand]").on("click", "th:nth-child(n+2)", removeColumn);
 
 let finalMap = new Map();
@@ -10,7 +10,7 @@ function getConfig() {
   console.log(JSON.parse($("textarea#thetextarea").val()));
   return $("textarea#thetextarea").val();
 }
-// remove a column
+
 function removeColumn(e) {
   var currentCell = $(this);
 
@@ -18,9 +18,9 @@ function removeColumn(e) {
   currentCell = forTable = $(this).parents("table").first();
   currentCell = rows = forTable.find("tr");
 
-  // using rownumbers, this won't be hit
+ 
   if (rows.last().find("td").length < 2) {
-    return alert("last column in table can't be removed");
+    return alert("utolsó oszlop nem törölhető");
   }
   console.log(colIndex);
   rows.each(function (i, row) {
@@ -29,26 +29,26 @@ function removeColumn(e) {
   reNumber(forTable);
 }
 
-$("table[data-canexpand]").on("click", "tr td:nth-child(1)", removeRow); // remove row handler
+$("table[data-canexpand]").on("click", "tr td:nth-child(1)", removeRow); 
 
-// initial numbering of all table cells
+
 $("table[data-canexpand]").each(function (i, tbl) {
   reNumber($(tbl));
 });
 
-// renumber a headerrow, row, or all rows
+
 function reNumber(table, row, i) {
-  // renumber column headers
+ 
   if (row && $(row).find("th").length) {
     return numberColumnHeaders(row);
   }
 
-  // renumber specific row
+  
   if (row) {
     return numberRow(row, i);
   }
 
-  // renumber all cells in table
+  
   return $.each(table.find("tr"), function (i, row) {
     if (i > 0) {
       numberRow(row, i);
@@ -57,7 +57,7 @@ function reNumber(table, row, i) {
     }
   });
 
-  // renumber: local numberRow method
+  
   function numberRow(rw, rnr) {
     $(rw)
       .find("td")
@@ -69,7 +69,7 @@ function reNumber(table, row, i) {
       });
   }
 
-  // renumber: local numberColumnHeader method
+  
   function numberColumnHeaders(headerRow) {
     $.each($(headerRow).find("th"), function (j, head) {
       $(head).attr("data-colindex", "col#" + j);
@@ -77,7 +77,7 @@ function reNumber(table, row, i) {
   }
 }
 
-// add new column cell
+
 function addCell(currentRow, rownr) {
   console.log(currentRow + " : " + rownr);
   var nwcell = $(
@@ -86,7 +86,7 @@ function addCell(currentRow, rownr) {
   $(currentRow).append(nwcell);
 }
 
-// add new column header
+
 function addColumnHeader(headerRow) {
   if (
     document.getElementById("addcolumn").value.match(/^ *$/) === null ||
@@ -101,11 +101,11 @@ function addColumnHeader(headerRow) {
     $(headerRow).append(nwcell);
     reNumber(null, headerRow);
   } else {
-    alert("meg kell adj az ábácá egy betüjét asd");
+    alert("adj meg az ábécé egy betüjét");
   }
 }
 
-// add a column
+
 function addColumn() {
   if (
     document.getElementById("addcolumn").value.match(/^ *$/) === null ||
@@ -115,14 +115,14 @@ function addColumn() {
     $.each(forTable.find("tr"), function (i, row) {
       return i < 1 ? addColumnHeader(row) : addCell(row, i);
     });
-    // renumber the whole enchillada
+    
     reNumber(forTable);
   } else {
     alert("meg kell adj az ábácá egy betüjét");
   }
 }
 
-// add a row
+
 function addRow(e) {
   
   var forTable = $("#" + $(this).attr("data-tableID")),
@@ -139,7 +139,7 @@ function addRow(e) {
   reNumber(null, row, forTable.find("tr").length - 1);
 }
 
-// remove a row
+
 function removeRow() {
   var currentCell = $(this),
     row = currentCell.parents("tr").first(),
@@ -151,7 +151,7 @@ function removeRow() {
   reNumber(forTable);
 }
 
-// remove a column
+
 function removeColumn(e) {
   var currentCell = $(this);
   console.log(currentCell);
@@ -159,7 +159,7 @@ function removeColumn(e) {
   currentCell = forTable = $(this).parents("table").first();
   currentCell = rows = forTable.find("tr");
 
-  // using rownumbers, this won't be hit
+  
   if (rows.last().find("td").length < 2) {
     return alert("utlosó oszlopot nem lehet törölni");
   }
@@ -169,7 +169,7 @@ function removeColumn(e) {
   });
   reNumber(forTable);
 }
-
+//function tabletofile
 document.getElementById('tabletofile').addEventListener('click', async e => {
  
   fetchToServer('savefile',JSON.stringify(fromTableToObject()))
@@ -177,7 +177,7 @@ document.getElementById('tabletofile').addEventListener('click', async e => {
 })
 
 
-
+//function submitTable
  document.getElementById('submitTable').addEventListener('click', async e => {
   
   Obj = await fetchToServer("appendToDiv", document.getElementById("fileSelect").value);
