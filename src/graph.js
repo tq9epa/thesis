@@ -2,7 +2,7 @@ var canvas = document.getElementById("myCanvas");
 
 
 
-function drawQs(name, x, y) {
+function drawQs(name, x, y,contactsPos) {
    
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
@@ -15,7 +15,7 @@ function drawQs(name, x, y) {
    
 }
 
-function fillText(properties, from, to){
+function fillText(properties, from, to, contactsPos){
     var textBox = canvas.getContext("2d");
     textBox.beginPath();
     textBox.font = "15px Arial";
@@ -27,7 +27,7 @@ function fillText(properties, from, to){
 }
 
 
-function drawLine(from,to){
+function drawLine(from,to,contactsPos){
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
 
@@ -103,13 +103,15 @@ async function makeGraph(kindOf) {
       
     }
 
+    contactsPos = new Map()
+
     side = true
     t=1
     for(key in tableObj){
         if(side){
             if(contactsPos.has(key.split(":")[0]) == false){
                 contactsPos.set(key.split(":")[0], { x: 500 + Math.floor(Math.random() * 10), y: 80*t })
-                drawQs(key.split(":")[0], contactsPos.get(key.split(":")[0]).x, contactsPos.get(key.split(":")[0]).y)
+                drawQs(key.split(":")[0], contactsPos.get(key.split(":")[0]).x, contactsPos.get(key.split(":")[0]).y,contactsPos)
                 side = false
                 t+=1
             }}
@@ -141,8 +143,8 @@ for (var key in tableObj) {
     
       if(key.split(":")[0] != properties[0]){
         console.log(key.split(":")[0]," : ",properties[0])
-      drawLine(key.split(":")[0],properties[0])
-      fillText(properties,key.split(":")[0],properties[0])}
+      drawLine(key.split(":")[0],properties[0],contactsPos)
+      fillText(properties,key.split(":")[0],properties[0],contactsPos)}
       properties = [];
     }
 }
